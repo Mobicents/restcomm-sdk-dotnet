@@ -22,6 +22,29 @@ namespace RestComm
 
 		public static string baseurl="https://cloud.restcomm.com/restcomm/2012-04-24/";
 
+		//constructor method to instantiate account 
+
+		public Account(string sid,string Tokenno)
+		{
+
+
+			RestClient client = new RestClient(baseurl+"Accounts/"+sid);
+			RestRequest login = new RestRequest(Method.GET);
+
+			client.Authenticator = new HttpBasicAuthenticator(sid, Tokenno);
+
+			IRestResponse response = client.Execute(login);
+			var content = response.Content;
+			Sid = content.GetAccountProperty (Property.Sid);
+			friendlyname = content.GetAccountProperty ("FriendlyName");
+			status = content.GetAccountProperty ("Status");
+			dateupdated = content.GetAccountProperty ("DateUpdated");
+			datecreated =content.GetAccountProperty ("DateCreated");
+			authtoken=content.GetAccountProperty("AuthToken");
+
+
+		}
+
 		public void ChangePassword(string NewPassword){
 
 			RestClient client = new RestClient(baseurl+"Accounts/"+Sid);
@@ -43,32 +66,8 @@ namespace RestComm
 
 
 
-					
 
 
-		/// <summary>
-		/// This method will load all the info about the account in the class's variables like sid , authtoken .
-		/// </summary>
-		public Account(string sid,string Tokenno)
-		{
-			
-
-			RestClient client = new RestClient(baseurl+"Accounts/"+sid);
-			RestRequest login = new RestRequest(Method.GET);
-		
-			client.Authenticator = new HttpBasicAuthenticator(sid, Tokenno);
-
-			IRestResponse response = client.Execute(login);
-			var content = response.Content;
-			Sid = content.GetAccountProperty (Property.Sid);
-			friendlyname = content.GetAccountProperty ("FriendlyName");
-			status = content.GetAccountProperty ("Status");
-			dateupdated = content.GetAccountProperty ("DateUpdated");
-			datecreated =content.GetAccountProperty ("DateCreated");
-			authtoken=content.GetAccountProperty("AuthToken");
-
-
-			}
 		public string GetAccountDetail(){
 
 			RestClient client = new RestClient(baseurl+"Accounts/"+Sid);
@@ -123,7 +122,10 @@ namespace RestComm
 
 
 
-		}
+	}
+
+
+
 	public class subaccount:Account
 	{
 		public subaccount(string Sid,string Tokenno):base(Sid,Tokenno){

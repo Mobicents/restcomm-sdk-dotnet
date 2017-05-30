@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace RestComm
 {
+	//this class contains all Acccount info and methods .
 	public partial class Account{
 		public List<Application> GetApplicationList(){
 			RestClient client = new RestClient (baseurl + "Accounts/" + Sid + "/Applications");
@@ -27,6 +28,8 @@ namespace RestComm
 				return applist;
 
 		}
+
+
 		public Application CreateApplication(string FriendlyName,string ApiVersion=null,bool HasVoiceCallerIdLookup=false,string RcmlUrl=null,String Kind=null){
 
 			RestClient client = new RestClient (baseurl + "Accounts/" + Sid + "/Applications");
