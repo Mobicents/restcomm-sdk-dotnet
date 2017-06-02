@@ -8,7 +8,7 @@ namespace RestComm
 		
 		public static class xmloperations
 		{
-
+		//
 
 			public static string GetAccountProperty(this string xmldoc,string node){
 				
