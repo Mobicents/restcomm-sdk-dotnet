@@ -52,10 +52,13 @@ namespace RestComm
 			case "Calls":
 				finalpath = "RestcommResponse/Calls/Call";
 				break;
+			case "Clients":
+					finalpath="RestcommResponse/Clients/Client";
+					break;
 			}
 
 			List<string> result = new List<string> ();
-				Console.WriteLine(xmldoc);
+
 			foreach (XmlNode x in xdoc.SelectNodes(finalpath)) {
 				var Node = x.SelectSingleNode (node);
 				if (Node != null) {
@@ -102,6 +105,22 @@ namespace RestComm
 
 
 	}
+
+
+}
+namespace Property{
+	class Account{
+		public string Sid{
+			get{ return "Sid";}
+		}
+		public string AuthToken{
+			get{ return "AuthToken";}
+		}
+
+
+
+	}
+
 
 
 }

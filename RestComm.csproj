@@ -46,6 +46,8 @@
     <Compile Include="RestComm\NumberList.cs" />
     <Compile Include="RestComm\NUnitTestClass.cs" />
     <Compile Include="RestComm\Call.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="property.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

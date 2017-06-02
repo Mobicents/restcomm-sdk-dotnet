@@ -7,7 +7,7 @@ using RestSharp.Authenticators;
 
 namespace RestComm
 {
-	//
+	
 	public partial class Account
 		{
 		
@@ -63,6 +63,10 @@ namespace RestComm
 
 
 		}	
+		public HttpBasicAuthenticator GetAuthentcator(){
+			return new HttpBasicAuthenticator (Sid, authtoken);
+
+		}
 
 
 

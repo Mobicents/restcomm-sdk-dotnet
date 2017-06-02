@@ -2,8 +2,7 @@
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
-using System.Net;
-using System.IO;
+
 namespace RestComm
 {
 	//
@@ -61,7 +60,7 @@ namespace RestComm
 
 
 			}
-			Console.WriteLine (clienturl);
+
 			client = new RestClient (clienturl);
 			client.Authenticator = new HttpBasicAuthenticator (Sid, TokenNo);
 			IRestResponse response = client.Execute (request);
@@ -95,7 +94,7 @@ namespace RestComm
 		}
 		public Call call(){
 			IRestResponse response = Client.Execute (Request);
-			Console.WriteLine (response.Content);
+
 			return new Call(response.Content);
 		}
 
@@ -165,14 +164,15 @@ namespace RestComm
 			ForwardFrom = xmlresponse.GetAccountsProperty ("ForwardFrom")[elementunmber];
 			CallerName = xmlresponse.GetAccountsProperty ("CallerName")[elementunmber];
 			Uri = xmlresponse.GetAccountsProperty ("Uri")[elementunmber];
-
-
-
-
-
-
-
 		}
+		public void ModifyCall(string ParameterName,string NewParameterValue,String AccountSId,String AuthToken){
+			RestClient client=new RestClient(Account.baseurl+"Accounts/"+AccountSId+"/Calls/"+Sid);
+			RestRequest makecallmodification = new RestRequest (Method.POST);
+			client.Authenticator = new HttpBasicAuthenticator (AccountSId, AuthToken);
+			makecallmodification.AddParameter(ParameterName,NewParameterValue);
+			client.Execute (makecallmodification);
+		}
+
 	}
 }
 
