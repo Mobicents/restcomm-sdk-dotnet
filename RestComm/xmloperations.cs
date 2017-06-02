@@ -8,48 +8,71 @@ namespace RestComm
 		
 		public static class xmloperations
 		{
-
+		//
 
 			public static string GetAccountProperty(this string xmldoc,string node){
 				
 				XmlDocument xdoc = new XmlDocument ();
 				xdoc.LoadXml (xmldoc);
-			string finalpath =null;
+				string finalpath =null;
 
-			if (xdoc.FirstChild.FirstChild.LocalName == "Application")
+
+			switch (xdoc.FirstChild.FirstChild.LocalName) {
+			case "Application":
 				finalpath = "RestcommResponse/Application/" + node;
-			else if (xdoc.FirstChild.FirstChild.LocalName == "Account")
+				break;
+			case "Account":
 				finalpath = "RestcommResponse/Account/" + node;
+				break;
+			case "Call":
+				finalpath = "RestcommResponse/Call/" + node;
+				break;
+			}
 			
 			return xdoc.SelectSingleNode(finalpath).InnerText;
 			}
 
 
 		public static List<string> GetAccountsProperty(this string xmldoc,string node)
-		{	
+		{	try{
 			XmlDocument xdoc = new XmlDocument ();
 			xdoc.LoadXml (xmldoc);
-			string finalpath;
+			string finalpath=null;
 
-			if (xdoc.FirstChild.FirstChild.LocalName == "Accounts") {
-				finalpath = "RestcommResponse/Accounts/Account";
-
-			}
-			else if (xdoc.FirstChild.FirstChild.LocalName == "Applications") {
+			switch (xdoc.FirstChild.FirstChild.LocalName) {
+			case "Applications":
 				finalpath = "RestcommResponse/Applications/Application";
-			} else {
-				finalpath = null;
-
+				break;
+			case "Accounts":
+				finalpath = "RestcommResponse/Accounts/Account" ;
+				break;
+			case "AvailablePhoneNumbers":
+				finalpath = "RestcommResponse/AvailablePhoneNumbers/AvailablePhoneNumber";
+				break;
+			case "Calls":
+				finalpath = "RestcommResponse/Calls/Call";
+				break;
+			case "Clients":
+					finalpath="RestcommResponse/Clients/Client";
+					break;
 			}
 
 			List<string> result = new List<string> ();
 
 			foreach (XmlNode x in xdoc.SelectNodes(finalpath)) {
-					
-				result.Add (x.SelectSingleNode (node).InnerText);
+				var Node = x.SelectSingleNode (node);
+				if (Node != null) {
+					result.Add (Node.InnerText);
+				} else
+					result.Add (null);
 
 			}
 				return result;
+			}
+			catch(Exception ex){
+
+				throw ex;
+			}
 			}
 			
 
@@ -82,6 +105,22 @@ namespace RestComm
 
 
 	}
+
+
+}
+namespace Property{
+	class Account{
+		public string Sid{
+			get{ return "Sid";}
+		}
+		public string AuthToken{
+			get{ return "AuthToken";}
+		}
+
+
+
+	}
+
 
 
 }
