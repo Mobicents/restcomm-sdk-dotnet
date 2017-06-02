@@ -40,12 +40,7 @@ namespace RestComm
 			}
 		}
 		public List<PhoneNumber> Search(){
-			int i = 0;
-			/*foreach (string s in searchparameter) {
-				Request.AddQueryParameter(searchparameter [i], parameterValue [i]);
-				i++;
-
-			}*/
+			
 			IRestResponse res = Client.Execute (Request);
 			var content = res.Content;
 

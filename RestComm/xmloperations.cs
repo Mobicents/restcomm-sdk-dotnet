@@ -34,34 +34,42 @@ namespace RestComm
 
 
 		public static List<string> GetAccountsProperty(this string xmldoc,string node)
-		{	
+		{	try{
 			XmlDocument xdoc = new XmlDocument ();
 			xdoc.LoadXml (xmldoc);
 			string finalpath=null;
 
 			switch (xdoc.FirstChild.FirstChild.LocalName) {
 			case "Applications":
-				finalpath = "RestcommResponse/Applications/Application/";
+				finalpath = "RestcommResponse/Applications/Application";
 				break;
-			case "Account":
-				finalpath = "RestcommResponse/Accounts/Account/" ;
+			case "Accounts":
+				finalpath = "RestcommResponse/Accounts/Account" ;
 				break;
 			case "AvailablePhoneNumbers":
 				finalpath = "RestcommResponse/AvailablePhoneNumbers/AvailablePhoneNumber";
 				break;
-			case "Call":
-				finalpath = "RestcommResponse/Calls/Call/";
+			case "Calls":
+				finalpath = "RestcommResponse/Calls/Call";
 				break;
 			}
 
 			List<string> result = new List<string> ();
-
+				Console.WriteLine(xmldoc);
 			foreach (XmlNode x in xdoc.SelectNodes(finalpath)) {
-					
-				result.Add (x.SelectSingleNode (node).InnerText);
+				var Node = x.SelectSingleNode (node);
+				if (Node != null) {
+					result.Add (Node.InnerText);
+				} else
+					result.Add (null);
 
 			}
 				return result;
+			}
+			catch(Exception ex){
+
+				throw ex;
+			}
 			}
 			
 

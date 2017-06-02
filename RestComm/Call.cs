@@ -21,10 +21,8 @@ namespace RestComm
 		}
 		public CallFilter GetCallDetail(){
 			
-			RestRequest makecall = new RestRequest (Method.POST);
-
-			makecall.Credentials = new NetworkCredential (Sid, authtoken);
-			return new CallFilter (makecall,Sid);
+			RestRequest makecall = new RestRequest (Method.GET);
+			return new CallFilter (makecall,Sid,authtoken);
 
 		}
 
@@ -35,12 +33,14 @@ namespace RestComm
 		RestClient client;
 		RestRequest request;
 		string Sid;
+		string TokenNo;
 		List<string> parametername=new List<string>();
 		List<string> parametervalue=new List<string>();
-		public CallFilter(RestRequest request,string Sid){
+		public CallFilter(RestRequest request,string Sid,string TokenNo){
 			
 			this.request = request;
 			this.Sid = Sid;
+			this.TokenNo = TokenNo;
 		}
 		public void AddSearchFilter(string ParameterName,string ParameterValue){
 			parametername.Add (ParameterName);
@@ -48,21 +48,24 @@ namespace RestComm
 		}
 		public List<Call> Search(){
 			string clienturl=Account.baseurl+"Accounts/"+Sid+"/Calls";
-			if (parametername.Count == 0) {
+			if (parametername.Count != 0) {
 				clienturl += "?";
 				int i = 0;
 				foreach (string s in parametername) {
 					if(i!=0)
 						clienturl+="&";
 					clienturl += parametername [i];
-					clienturl += "=" + parametervalue;
+					clienturl += "=" + parametervalue[i];
 					i++;
 				}
 
 
 			}
+			Console.WriteLine (clienturl);
 			client = new RestClient (clienturl);
+			client.Authenticator = new HttpBasicAuthenticator (Sid, TokenNo);
 			IRestResponse response = client.Execute (request);
+
 			List<Call> calllist=new List<Call>();
 			List<string> Sidlist = response.Content.GetAccountsProperty ("Sid");
 			int count = Sidlist.Count;
