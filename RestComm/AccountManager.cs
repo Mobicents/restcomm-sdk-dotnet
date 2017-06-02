@@ -68,15 +68,7 @@ namespace RestComm
 
 
 
-		public string GetAccountDetail(){
 
-			RestClient client = new RestClient(baseurl+"Accounts/"+Sid);
-			RestRequest login = new RestRequest(Method.GET);
-			client.Authenticator = new HttpBasicAuthenticator(Sid, authtoken);
-			IRestResponse response = client.Execute(login);
-			return response.Content;
-
-		}
 
 
 		/// <summary>
@@ -117,8 +109,6 @@ namespace RestComm
 
 		}
 
-
-			
 
 
 
@@ -165,4 +155,6 @@ namespace RestComm
 
 	}
 }
+
+
 

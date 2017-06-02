@@ -14,12 +14,20 @@ namespace RestComm
 				
 				XmlDocument xdoc = new XmlDocument ();
 				xdoc.LoadXml (xmldoc);
-			string finalpath =null;
+				string finalpath =null;
 
-			if (xdoc.FirstChild.FirstChild.LocalName == "Application")
+
+			switch (xdoc.FirstChild.FirstChild.LocalName) {
+			case "Application":
 				finalpath = "RestcommResponse/Application/" + node;
-			else if (xdoc.FirstChild.FirstChild.LocalName == "Account")
+				break;
+			case "Account":
 				finalpath = "RestcommResponse/Account/" + node;
+				break;
+			case "Call":
+				finalpath = "RestcommResponse/Call/" + node;
+				break;
+			}
 			
 			return xdoc.SelectSingleNode(finalpath).InnerText;
 			}
@@ -29,17 +37,21 @@ namespace RestComm
 		{	
 			XmlDocument xdoc = new XmlDocument ();
 			xdoc.LoadXml (xmldoc);
-			string finalpath;
+			string finalpath=null;
 
-			if (xdoc.FirstChild.FirstChild.LocalName == "Accounts") {
-				finalpath = "RestcommResponse/Accounts/Account";
-
-			}
-			else if (xdoc.FirstChild.FirstChild.LocalName == "Applications") {
-				finalpath = "RestcommResponse/Applications/Application";
-			} else {
-				finalpath = null;
-
+			switch (xdoc.FirstChild.FirstChild.LocalName) {
+			case "Applications":
+				finalpath = "RestcommResponse/Applications/Application/";
+				break;
+			case "Account":
+				finalpath = "RestcommResponse/Accounts/Account/" ;
+				break;
+			case "AvailablePhoneNumbers":
+				finalpath = "RestcommResponse/AvailablePhoneNumbers/AvailablePhoneNumber";
+				break;
+			case "Call":
+				finalpath = "RestcommResponse/Calls/Call/";
+				break;
 			}
 
 			List<string> result = new List<string> ();
