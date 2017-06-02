@@ -1,0 +1,183 @@
+<Type Name="AccountManager" FullName="RestComm.AccountManager">
+  <TypeSignature Language="C#" Value="public class AccountManager" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AccountManager extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>RestComm</AssemblyName>
+    <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public AccountManager ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="authtoken">
+      <MemberSignature Language="C#" Value="public string authtoken;" />
+      <MemberSignature Language="ILAsm" Value=".field public string authtoken" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CloseSubAccount">
+      <MemberSignature Language="C#" Value="public string CloseSubAccount (string Sid, string Tokenno, string subaccountsid);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance string CloseSubAccount(string Sid, string Tokenno, string subaccountsid) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="Sid" Type="System.String" />
+        <Parameter Name="Tokenno" Type="System.String" />
+        <Parameter Name="subaccountsid" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="Sid">To be added.</param>
+        <param name="Tokenno">To be added.</param>
+        <param name="subaccountsid">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateSubAccount">
+      <MemberSignature Language="C#" Value="public string CreateSubAccount (string FriendlyName, string emailid, string password);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance string CreateSubAccount(string FriendlyName, string emailid, string password) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="FriendlyName" Type="System.String" />
+        <Parameter Name="emailid" Type="System.String" />
+        <Parameter Name="password" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="FriendlyName">To be added.</param>
+        <param name="emailid">To be added.</param>
+        <param name="password">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="emailid">
+      <MemberSignature Language="C#" Value="public string emailid;" />
+      <MemberSignature Language="ILAsm" Value=".field public string emailid" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetSubAccountDetail">
+      <MemberSignature Language="C#" Value="public string[] GetSubAccountDetail (string Sid, string Tokenno);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance string[] GetSubAccountDetail(string Sid, string Tokenno) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="Sid" Type="System.String" />
+        <Parameter Name="Tokenno" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="Sid">To be added.</param>
+        <param name="Tokenno">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LoadAccountInfo">
+      <MemberSignature Language="C#" Value="public void LoadAccountInfo (string Sid, string Tokenno);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void LoadAccountInfo(string Sid, string Tokenno) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="Sid" Type="System.String" />
+        <Parameter Name="Tokenno" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="Sid">To be added.</param>
+        <param name="Tokenno">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Password">
+      <MemberSignature Language="C#" Value="public string Password { set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Password" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="sid">
+      <MemberSignature Language="C#" Value="public string sid;" />
+      <MemberSignature Language="ILAsm" Value=".field public string sid" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6352.27118</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
