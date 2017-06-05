@@ -48,6 +48,7 @@
     <Compile Include="RestComm\Call.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="property.cs" />
+    <Compile Include="Email.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

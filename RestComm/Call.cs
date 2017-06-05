@@ -2,7 +2,7 @@
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
-
+//Not complete
 namespace RestComm
 {
 	//
@@ -102,7 +102,7 @@ namespace RestComm
 	}
 
 	public class Call{
-		#pragma warning disable 0414
+		
 		
 		public string Sid;
 		public string ParentCallSid;

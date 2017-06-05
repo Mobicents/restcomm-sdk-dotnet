@@ -5,13 +5,13 @@ using System.Collections.Generic;
 namespace RestComm
 {
 	//this class is used to create extension methods in string to get property value (like sid, ) from xml response
-		
+	#pragma warning disable 0168 0169
 		public static class xmloperations
 		{
 		//
 
 			public static string GetAccountProperty(this string xmldoc,string node){
-				
+			try{
 				XmlDocument xdoc = new XmlDocument ();
 				xdoc.LoadXml (xmldoc);
 				string finalpath =null;
@@ -27,9 +27,27 @@ namespace RestComm
 			case "Call":
 				finalpath = "RestcommResponse/Call/" + node;
 				break;
+			case "Client":
+				finalpath = "RestcommResponse/Client/" + node;
+				break;
+			case "EmailMessage":
+					finalpath="RestcommResponse/EmailMessage/" + node;
+					break;
 			}
-			
-			return xdoc.SelectSingleNode(finalpath).InnerText;
+
+			var Node = xdoc.SelectSingleNode (finalpath);
+			if (Node != null)
+				return xdoc.SelectSingleNode (finalpath).InnerText;
+			else
+				return null;
+			}
+			catch(XmlException e){
+				
+
+				XmlException x = new XmlException (xmldoc);
+				throw x;
+
+			}
 			}
 
 
@@ -71,7 +89,7 @@ namespace RestComm
 			}
 			catch(Exception ex){
 
-				throw ex;
+				throw new XmlException(xmldoc);
 			}
 			}
 			
@@ -108,6 +126,7 @@ namespace RestComm
 
 
 }
+
 namespace Property{
 	class Account{
 		public string Sid{
