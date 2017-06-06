@@ -1,16 +1,37 @@
-﻿using System;
+﻿// /*
+//  * TeleStax, Open Source Cloud Communications
+//  * Copyright 2011-2016, Telestax Inc and individual contributors
+//  * by the @authors tag.
+//  *
+//  * This is free software; you can redistribute it and/or modify it
+//  * under the terms of the GNU Lesser General Public License as
+//  * published by the Free Software Foundation; either version 2.1 of
+//  * the License, or (at your option) any later version.
+//  *
+//  * This software is distributed in the hope that it will be useful,
+//  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+//  * Lesser General Public License for more details.
+//  *
+//  * You should have received a copy of the GNU Lesser General Public
+//  * License along with this software; if not, write to the Free
+//  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+//  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+//  */
+//
+using System;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
 //Not complete
 namespace RestComm
 {
-	//
+	//In 
 	public partial class Account{
 		public makecall MakeCall(string From,string To,string Url){
-			RestClient client=new RestClient(baseurl+"Accounts/"+Sid+"/Calls");
+			RestClient client=new RestClient(baseurl+"Accounts/"+Properties.Sid+"/Calls");
 			RestRequest makecall = new RestRequest (Method.POST);
-			client.Authenticator =new HttpBasicAuthenticator(Sid, authtoken);
+			client.Authenticator =new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
 			makecall.AddParameter ("From", From);
 			makecall.AddParameter ("To", To);
 			makecall.AddParameter ("Url", Url);
@@ -21,7 +42,7 @@ namespace RestComm
 		public CallFilter GetCallDetail(){
 			
 			RestRequest makecall = new RestRequest (Method.GET);
-			return new CallFilter (makecall,Sid,authtoken);
+			return new CallFilter (makecall,Properties.Sid,Properties.authtoken);
 
 		}
 
@@ -94,7 +115,7 @@ namespace RestComm
 		}
 		public Call call(){
 			IRestResponse response = Client.Execute (Request);
-
+			Console.WriteLine (response.Content);
 			return new Call(response.Content);
 		}
 
@@ -103,75 +124,58 @@ namespace RestComm
 
 	public class Call{
 		
-		
-		public string Sid;
-		public string ParentCallSid;
-		public string DateCreated;
-		public string DateUpdated;
-		public string To;
-		public string From;
-		public string PhoneNumberSid;
-		public string Status;
-		public string StartTime;
-		public string EndTime;
-		public string Duration;
-		public string Price;
-		public string Direction;
-		public string AnsweredBy;
-		public string ApiVersion;
-		public string ForwardFrom;
-		public string CallerName;
-		public string Uri;
+		public callProperties Properties;
 
 		public Call(string xmlresponse){
-			Sid = xmlresponse.GetAccountProperty ("Sid");
-			ParentCallSid = xmlresponse.GetAccountProperty ("ParentCallSid");
-			DateCreated = xmlresponse.GetAccountProperty ("DateCreated");
-			DateUpdated = xmlresponse.GetAccountProperty ("DateUpdated");
-			To = xmlresponse.GetAccountProperty ("To");
-			From = xmlresponse.GetAccountProperty ("From");
-			PhoneNumberSid = xmlresponse.GetAccountProperty ("PhoneNumberSid");
-			Status = xmlresponse.GetAccountProperty ("Status");
-			StartTime = xmlresponse.GetAccountProperty ("StartTime");
-			EndTime = xmlresponse.GetAccountProperty ("EndTime");
-			Duration = xmlresponse.GetAccountProperty ("Duration");
-			Price = xmlresponse.GetAccountProperty ("Price");
-			Direction = xmlresponse.GetAccountProperty ("Direction");
-			AnsweredBy = xmlresponse.GetAccountProperty ("AnsweredBy");
-			ApiVersion = xmlresponse.GetAccountProperty ("ApiVersion");
-			ForwardFrom = xmlresponse.GetAccountProperty ("ForwardFrom");
-			CallerName = xmlresponse.GetAccountProperty ("CallerName");
-			Uri = xmlresponse.GetAccountProperty ("Uri");
+			Properties.Sid = xmlresponse.GetAccountProperty ("Sid");
+			Properties.ParentCallSid = xmlresponse.GetAccountProperty ("ParentCallSid");
+			Properties.DateCreated = xmlresponse.GetAccountProperty ("DateCreated");
+			Properties.DateUpdated = xmlresponse.GetAccountProperty ("DateUpdated");
+			Properties.To = xmlresponse.GetAccountProperty ("To");
+			Properties.From = xmlresponse.GetAccountProperty ("From");
+			Properties.PhoneNumberSid = xmlresponse.GetAccountProperty ("PhoneNumberSid");
+			Properties.Status = xmlresponse.GetAccountProperty ("Status");
+			Properties.StartTime = xmlresponse.GetAccountProperty ("StartTime");
+			Properties.EndTime = xmlresponse.GetAccountProperty ("EndTime");
+			Properties.Duration = xmlresponse.GetAccountProperty ("Duration");
+			Properties.Price = xmlresponse.GetAccountProperty ("Price");
+			Properties.Direction = xmlresponse.GetAccountProperty ("Direction");
+			Properties.AnsweredBy = xmlresponse.GetAccountProperty ("AnsweredBy");
+			Properties.ApiVersion = xmlresponse.GetAccountProperty ("ApiVersion");
+			Properties.ForwardFrom = xmlresponse.GetAccountProperty ("ForwardFrom");
+			Properties.CallerName = xmlresponse.GetAccountProperty ("CallerName");
+			Properties.Uri = xmlresponse.GetAccountProperty ("Uri");
 		}
 		//use this constructor when there is list of call in response
 		public Call(string xmlresponse,int elementunmber){
 
-			Sid = xmlresponse.GetAccountsProperty ("Sid")[elementunmber];
-			ParentCallSid = xmlresponse.GetAccountsProperty ("ParentCallSid")[elementunmber];
-			DateCreated = xmlresponse.GetAccountsProperty ("DateCreated")[elementunmber];
-			DateUpdated = xmlresponse.GetAccountsProperty ("DateUpdated")[elementunmber];
-			To = xmlresponse.GetAccountsProperty ("To")[elementunmber];
-			From = xmlresponse.GetAccountsProperty ("From")[elementunmber];
-			PhoneNumberSid = xmlresponse.GetAccountsProperty ("PhoneNumberSid")[elementunmber];
-			Status = xmlresponse.GetAccountsProperty ("Status")[elementunmber];
-			StartTime = xmlresponse.GetAccountsProperty ("StartTime")[elementunmber];
-			EndTime = xmlresponse.GetAccountsProperty ("EndTime")[elementunmber];
-			Duration = xmlresponse.GetAccountsProperty ("Duration")[elementunmber];
-			Price = xmlresponse.GetAccountsProperty ("Price")[elementunmber];
-			Direction = xmlresponse.GetAccountsProperty ("Direction")[elementunmber];
-			AnsweredBy = xmlresponse.GetAccountsProperty ("AnsweredBy")[elementunmber];
-			ApiVersion = xmlresponse.GetAccountsProperty ("ApiVersion")[elementunmber];
-			ForwardFrom = xmlresponse.GetAccountsProperty ("ForwardFrom")[elementunmber];
-			CallerName = xmlresponse.GetAccountsProperty ("CallerName")[elementunmber];
-			Uri = xmlresponse.GetAccountsProperty ("Uri")[elementunmber];
+			Properties.Sid = xmlresponse.GetAccountsProperty ("Sid")[elementunmber];
+			Properties.ParentCallSid = xmlresponse.GetAccountsProperty ("ParentCallSid")[elementunmber];
+			Properties.DateCreated = xmlresponse.GetAccountsProperty ("DateCreated")[elementunmber];
+			Properties.DateUpdated = xmlresponse.GetAccountsProperty ("DateUpdated")[elementunmber];
+			Properties.To = xmlresponse.GetAccountsProperty ("To")[elementunmber];
+			Properties.From = xmlresponse.GetAccountsProperty ("From")[elementunmber];
+			Properties.PhoneNumberSid = xmlresponse.GetAccountsProperty ("PhoneNumberSid")[elementunmber];
+			Properties.Status = xmlresponse.GetAccountsProperty ("Status")[elementunmber];
+			Properties.StartTime = xmlresponse.GetAccountsProperty ("StartTime")[elementunmber];
+			Properties.EndTime = xmlresponse.GetAccountsProperty ("EndTime")[elementunmber];
+			Properties.Duration = xmlresponse.GetAccountsProperty ("Duration")[elementunmber];
+			Properties.Price = xmlresponse.GetAccountsProperty ("Price")[elementunmber];
+			Properties.Direction = xmlresponse.GetAccountsProperty ("Direction")[elementunmber];
+			Properties.AnsweredBy = xmlresponse.GetAccountsProperty ("AnsweredBy")[elementunmber];
+			Properties.ApiVersion = xmlresponse.GetAccountsProperty ("ApiVersion")[elementunmber];
+			Properties.ForwardFrom = xmlresponse.GetAccountsProperty ("ForwardFrom")[elementunmber];
+			Properties.CallerName = xmlresponse.GetAccountsProperty ("CallerName")[elementunmber];
+			Properties.Uri = xmlresponse.GetAccountsProperty ("Uri")[elementunmber];
 		}
 		public void ModifyCall(string ParameterName,string NewParameterValue,String AccountSId,String AuthToken){
-			RestClient client=new RestClient(Account.baseurl+"Accounts/"+AccountSId+"/Calls/"+Sid);
+			RestClient client=new RestClient(Account.baseurl+"Accounts/"+AccountSId+"/Calls/"+Properties.Sid);
 			RestRequest makecallmodification = new RestRequest (Method.POST);
 			client.Authenticator = new HttpBasicAuthenticator (AccountSId, AuthToken);
 			makecallmodification.AddParameter(ParameterName,NewParameterValue);
 			client.Execute (makecallmodification);
 		}
+
 
 	}
 }

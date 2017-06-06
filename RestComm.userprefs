@@ -1,13 +1,17 @@
 ﻿<Properties StartupItem="RestComm.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="property.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/NUnitTestClass.cs">
     <Files>
-      <File FileName="RestComm/AccountManager.cs" Line="18" Column="29" />
-      <File FileName="RestComm/Call.cs" Line="11" Column="69" />
-      <File FileName="RestComm/xmloperations.cs" Line="55" Column="9" />
-      <File FileName="RestComm/NumberList.cs" Line="45" Column="14" />
-      <File FileName="Client.cs" Line="8" Column="2" />
-      <File FileName="property.cs" Line="28" Column="3" />
+      <File FileName="src/AccountManager.cs" Line="21" Column="3" />
+      <File FileName="src/Call.cs" Line="21" Column="3" />
+      <File FileName="src/xmloperations.cs" Line="21" Column="3" />
+      <File FileName="src/property.cs" Line="21" Column="3" />
+      <File FileName="src/NumberList.cs" Line="21" Column="3" />
+      <File FileName="src/Gateway.cs" Line="21" Column="3" />
+      <File FileName="src/ApplicationManager.cs" Line="21" Column="3" />
+      <File FileName="src/Email.cs" Line="21" Column="3" />
+      <File FileName="src/Client.cs" Line="21" Column="3" />
+      <File FileName="src/NUnitTestClass.cs" Line="21" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

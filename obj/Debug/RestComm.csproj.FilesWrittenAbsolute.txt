@@ -16,3 +16,4 @@
 /home/hannibal/Documents/restcomm-sdk-dotnet/obj/Debug/RestComm.dll
 /home/hannibal/Documents/restcomm-sdk-dotnet/obj/Debug/RestComm.dll.mdb
 /home/hannibal/Documents/restcomm-sdk-dotnet/bin/Debug/RestSharp.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/obj/Debug/RestComm.Credentials.txt

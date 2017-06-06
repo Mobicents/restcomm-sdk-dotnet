@@ -1,4 +1,25 @@
-﻿using System;
+﻿// /*
+//  * TeleStax, Open Source Cloud Communications
+//  * Copyright 2011-2016, Telestax Inc and individual contributors
+//  * by the @authors tag.
+//  *
+//  * This is free software; you can redistribute it and/or modify it
+//  * under the terms of the GNU Lesser General Public License as
+//  * published by the Free Software Foundation; either version 2.1 of
+//  * the License, or (at your option) any later version.
+//  *
+//  * This software is distributed in the hope that it will be useful,
+//  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+//  * Lesser General Public License for more details.
+//  *
+//  * You should have received a copy of the GNU Lesser General Public
+//  * License along with this software; if not, write to the Free
+//  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+//  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+//  */
+//
+using System;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
@@ -9,9 +30,9 @@ namespace RestComm
 
 		public NumberFilter SearchPhoneNumbers(string IsoCountryCode){
 
-			RestClient client = new RestClient (baseurl + "Accounts/" + Sid + "/AvailablePhoneNumbers/" + IsoCountryCode + "/Local");
+			RestClient client = new RestClient (baseurl + "Accounts/" + Properties.Sid + "/AvailablePhoneNumbers/" + IsoCountryCode + "/Local");
 
-			client.Authenticator = new HttpBasicAuthenticator (Sid, authtoken);
+			client.Authenticator = new HttpBasicAuthenticator (Properties.Sid, Properties.authtoken);
 			RestRequest req = new RestRequest (Method.GET);//cant figure out correct method for it . get and post wont work
 			return new NumberFilter(client,req);
 
@@ -64,16 +85,14 @@ namespace RestComm
 	}
 	public class PhoneNumber{
 
-		public string FriendlyName;
-		public string Number;
-		public string IsoCountry;
 
+		public numberProperties Properties;
 
 		public PhoneNumber(string friendlyname,string phoneNumber,string isoCountry){
 
-			FriendlyName = friendlyname;
-			Number = phoneNumber;
-			IsoCountry = isoCountry;
+			Properties.FriendlyName = friendlyname;
+			Properties.Number = phoneNumber;
+			Properties.IsoCountry = isoCountry;
 
 
 

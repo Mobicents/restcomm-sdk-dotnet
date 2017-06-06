@@ -55,4 +55,13 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text="/*&#xA; * TeleStax, Open Source Cloud Communications&#xA; * Copyright 2011-2016, Telestax Inc and individual contributors&#xA; * by the @authors tag.&#xA; *&#xA; * This is free software; you can redistribute it and/or modify it&#xA; * under the terms of the GNU Lesser General Public License as&#xA; * published by the Free Software Foundation; either version 2.1 of&#xA; * the License, or (at your option) any later version.&#xA; *&#xA; * This software is distributed in the hope that it will be useful,&#xA; * but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU&#xA; * Lesser General Public License for more details.&#xA; *&#xA; * You should have received a copy of the GNU Lesser General Public&#xA; * License along with this software; if not, write to the Free&#xA; * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA&#xA; * 02110-1301 USA, or see the FSF site: http://www.fsf.org.&#xA; */&#xA;" IncludeInNewFiles="True" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>
