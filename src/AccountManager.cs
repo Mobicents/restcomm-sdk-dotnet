@@ -58,9 +58,6 @@ namespace RestComm
 			Properties.datecreated =content.GetAccountProperty ("DateCreated");
 			Properties.authtoken=content.GetAccountProperty("AuthToken");
 
-
-
-
 		}
 
 		public void ChangePassword(string NewPassword){

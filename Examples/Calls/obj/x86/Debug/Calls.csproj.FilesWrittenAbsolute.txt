@@ -1,7 +1,7 @@
 /home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/RestComm.dll
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/RestSharp.dll
 /home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/Calls.exe.mdb
 /home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/Calls.exe
 /home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/obj/x86/Debug/Calls.exe
 /home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/obj/x86/Debug/Calls.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Calls/bin/Debug/RestSharp.dll

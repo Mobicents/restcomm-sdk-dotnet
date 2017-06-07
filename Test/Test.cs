@@ -42,6 +42,9 @@ namespace Test
 		public void Login(){
 			if (akount==null) {
 				dictionary = System.IO.File.ReadAllLines (@"Credentials.txt");
+				if (dictionary == null) {
+					Assert.Fail ("Enter your credential in Credential.txt");
+				}
 				akount = new Account (dictionary [0], dictionary [1]);
 
 			}

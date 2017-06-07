@@ -10,7 +10,7 @@ namespace Calls
 		{
 
 			//Login 
-			Account akount = new Account ("AC13b4372c92ed5c07d951cf842e2664ff", "eff8eb1e1334884cf7dd59d3a00e687a");
+			Account akount = new Account ("Sid", "AuthToken");
 
 			//Makes call
 			var  OutBCall= akount.MakeCall("From","To","http://cloud.restcomm.com/restcomm/demos/hello-play.xml");

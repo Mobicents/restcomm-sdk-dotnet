@@ -7,7 +7,7 @@ namespace Accounts
 		public static void Main (string[] args)
 		{
 			//Login 
-			Account akount = new Account ("AC13b4372c92ed5c07d951cf842e2664ff", "eff8eb1e1334884cf7dd59d3a00e687a");
+			Account akount = new Account ("Sid", "AuthToken");
 
 			//prints Sid of Account
 			Console.WriteLine (akount.Properties.Sid);
