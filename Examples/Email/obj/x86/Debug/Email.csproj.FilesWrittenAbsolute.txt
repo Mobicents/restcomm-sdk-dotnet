@@ -1,0 +1,7 @@
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/bin/Debug/Email.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/bin/Debug/Email.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/obj/x86/Debug/Email.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/obj/x86/Debug/Email.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/bin/Debug/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Email/bin/Debug/RestSharp.dll

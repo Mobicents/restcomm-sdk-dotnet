@@ -125,7 +125,6 @@ namespace RestComm
 
 			IRestResponse response = client.Execute (request);
 			return new Client (response.Content);
-
 		}
 
 	}

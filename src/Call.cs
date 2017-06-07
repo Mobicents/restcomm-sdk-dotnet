@@ -118,7 +118,7 @@ namespace RestComm
 		}
 		public Call call(){
 			IRestResponse response = Client.Execute (Request);
-			Console.WriteLine (response.Content);
+
 			return new Call(response.Content);
 		}
 

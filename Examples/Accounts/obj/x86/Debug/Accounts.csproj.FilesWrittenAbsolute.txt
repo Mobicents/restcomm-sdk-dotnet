@@ -1,0 +1,7 @@
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/bin/Debug/Accounts.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/bin/Debug/Accounts.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/obj/x86/Debug/Accounts.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/obj/x86/Debug/Accounts.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/bin/Debug/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Accounts/bin/Debug/RestSharp.dll

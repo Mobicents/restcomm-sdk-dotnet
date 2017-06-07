@@ -36,7 +36,6 @@ namespace RestComm
 				XmlDocument xdoc = new XmlDocument ();
 				xdoc.LoadXml (xmldoc);
 				string finalpath =null;
-
 				finalpath=xdoc.FirstChild.LocalName+"/"+xdoc.FirstChild.FirstChild.LocalName+"/"+node;
 		
 

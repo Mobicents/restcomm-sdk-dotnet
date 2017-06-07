@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts", "Accounts\Accounts.csproj", "{4D52DE07-4030-4055-87F6-90279E0D62F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calls", "Calls\Calls.csproj", "{0B8B2C3D-CA38-457C-A9E7-69FA0871A9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{76252BD2-485E-453C-B367-6AC7374204D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{163FB2D7-0B43-4E0B-B2FA-3576A390B514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{64ABB523-9442-451D-8EA1-A08492EF7440}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B8B2C3D-CA38-457C-A9E7-69FA0871A9F2}.Debug|x86.ActiveCfg = Debug|x86
+		{0B8B2C3D-CA38-457C-A9E7-69FA0871A9F2}.Debug|x86.Build.0 = Debug|x86
+		{0B8B2C3D-CA38-457C-A9E7-69FA0871A9F2}.Release|x86.ActiveCfg = Release|x86
+		{0B8B2C3D-CA38-457C-A9E7-69FA0871A9F2}.Release|x86.Build.0 = Release|x86
+		{163FB2D7-0B43-4E0B-B2FA-3576A390B514}.Debug|x86.ActiveCfg = Debug|x86
+		{163FB2D7-0B43-4E0B-B2FA-3576A390B514}.Debug|x86.Build.0 = Debug|x86
+		{163FB2D7-0B43-4E0B-B2FA-3576A390B514}.Release|x86.ActiveCfg = Release|x86
+		{163FB2D7-0B43-4E0B-B2FA-3576A390B514}.Release|x86.Build.0 = Release|x86
+		{4D52DE07-4030-4055-87F6-90279E0D62F7}.Debug|x86.ActiveCfg = Debug|x86
+		{4D52DE07-4030-4055-87F6-90279E0D62F7}.Debug|x86.Build.0 = Debug|x86
+		{4D52DE07-4030-4055-87F6-90279E0D62F7}.Release|x86.ActiveCfg = Release|x86
+		{4D52DE07-4030-4055-87F6-90279E0D62F7}.Release|x86.Build.0 = Release|x86
+		{64ABB523-9442-451D-8EA1-A08492EF7440}.Debug|x86.ActiveCfg = Debug|x86
+		{64ABB523-9442-451D-8EA1-A08492EF7440}.Debug|x86.Build.0 = Debug|x86
+		{64ABB523-9442-451D-8EA1-A08492EF7440}.Release|x86.ActiveCfg = Release|x86
+		{64ABB523-9442-451D-8EA1-A08492EF7440}.Release|x86.Build.0 = Release|x86
+		{76252BD2-485E-453C-B367-6AC7374204D5}.Debug|x86.ActiveCfg = Debug|x86
+		{76252BD2-485E-453C-B367-6AC7374204D5}.Debug|x86.Build.0 = Debug|x86
+		{76252BD2-485E-453C-B367-6AC7374204D5}.Release|x86.ActiveCfg = Release|x86
+		{76252BD2-485E-453C-B367-6AC7374204D5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,7 @@
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/bin/Debug/Application.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/bin/Debug/Application.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/obj/x86/Debug/Application.exe
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/obj/x86/Debug/Application.exe.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/bin/Debug/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Application/bin/Debug/RestSharp.dll

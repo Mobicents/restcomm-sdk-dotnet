@@ -50,12 +50,15 @@ namespace RestComm
 
 			IRestResponse response = client.Execute(login);
 			var content = response.Content;
+
 			Properties.Sid = content.GetAccountProperty (Property.Sid);
 			Properties.friendlyname = content.GetAccountProperty ("FriendlyName");
 			Properties.status = content.GetAccountProperty ("Status");
 			Properties.dateupdated = content.GetAccountProperty ("DateUpdated");
 			Properties.datecreated =content.GetAccountProperty ("DateCreated");
 			Properties.authtoken=content.GetAccountProperty("AuthToken");
+
+
 
 
 		}
@@ -69,6 +72,7 @@ namespace RestComm
 			login.AddParameter ("Password", NewPassword);
 			IRestResponse response = client.Execute(login);
 			var content = response.Content;
+
 
 
 			Properties.dateupdated = content.GetAccountProperty ("DateUpdated");
@@ -168,7 +172,6 @@ namespace RestComm
 
 			login.AddParameter("Status","closed");
 			IRestResponse response = client.Execute(login);
-
 			return response.Content;
 		}
 
