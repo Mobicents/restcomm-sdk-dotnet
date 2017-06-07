@@ -23,15 +23,16 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using System.Collections.Generic;
-namespace RestComm
+using RestComm;
+namespace Test
 {//In Credentials.txt(Project/bin/Debug)
-//First Line : Account Sid
-//Second Line :Authentication Token
-//Third Line :Login Password
+	//First Line : Account Sid
+	//Second Line :Authentication Token
+	//Third Line :Login Password
 	[TestFixture ]
 	public class NUnitTestClass
 	{
-		
+
 		string[] dictionary=new string[3];
 		Account akount;
 
@@ -67,10 +68,10 @@ namespace RestComm
 
 				string newauthtoken = akount.Properties.authtoken;
 
-				
+
 				akount.ChangePassword (dictionary[2]);
 				Assert.AreNotEqual (newauthtoken, oldauthtoken);
-			
+
 			}
 		}
 
@@ -98,13 +99,13 @@ namespace RestComm
 
 		[Test]
 		public void CreateClientANDMakeCall(){
-			
+
 			Client newclient = akount.makeclient ("Demo123", "Demo@123").Create();
 
-			var callinit=akount.MakeCall ("+1234567", newclient.Login, "http://cloud.restcomm.com/restcomm/demos/hello-play.xml");
+			var callinit=akount.MakeCall ("+1234567", newclient.Properties.Login, "http://cloud.restcomm.com/restcomm/demos/hello-play.xml");
 
 			Call lastcall =callinit.call ();
-			Assert.AreEqual(lastcall.Properties.To,newclient.Login);
+			Assert.AreEqual(lastcall.Properties.To,newclient.Properties.Login);
 			newclient.Delete(akount.Properties.Sid,akount.Properties.authtoken);
 		}
 		[Test]
@@ -128,12 +129,13 @@ namespace RestComm
 		}
 		[Test]
 		public void ApplicationList(){
+		//	Application app= akount.CreateApplication ("DemoApp", "2012-04-24");
 			List<Application> applist = akount.GetApplicationList ();
-			if (applist.Count == 0) {
+			if (applist==null) {
 
 				Application app= akount.CreateApplication ("DemoApp", "2012-04-24");
 				applist = akount.GetApplicationList();
-				Assert.AreNotEqual (0, applist.Count);
+				Assert.IsNotNull(applist);
 				app.Delete ();
 			}
 

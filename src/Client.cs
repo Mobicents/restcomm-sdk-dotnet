@@ -58,64 +58,51 @@ namespace RestComm
 	}
 	public class Client
 	{
-		public string Sid;
-		public string DateCreated;
-		public string DateUpdated;
-		public string FriendlyName;
-		public string AccountSid;
-		public string ApiVersion;
-		public string Login;
-		public string Password;
-		public string Status;
-		public string VoiceUrl;
-		public string VoiceMethod;
-		public string VoiceFallbackUrl;
-		public string VoiceFallbackMethod;
-		public string VoiceApplication;
-		public string Uri;
+		
+		public clientProperties Properties;
 		
 		public Client (string responsecontent,int  clientno)
 		{
-			Sid = responsecontent.GetAccountsProperty ("Sid")[clientno];
-			DateCreated = responsecontent.GetAccountsProperty ("DateCreated")[clientno];
-			DateUpdated = responsecontent.GetAccountsProperty ("DateUpdated")[clientno];
-			FriendlyName = responsecontent.GetAccountsProperty ("FriendlyName")[clientno];
-			AccountSid = responsecontent.GetAccountsProperty ("AccountSid")[clientno];
-			ApiVersion = responsecontent.GetAccountsProperty ("ApiVersion")[clientno];
-			Login = responsecontent.GetAccountsProperty ("Login")[clientno];
-			Password = responsecontent.GetAccountsProperty ("Password")[clientno];
-			Status = responsecontent.GetAccountsProperty ("Status")[clientno];
-			VoiceUrl = responsecontent.GetAccountsProperty ("VoiceUrl")[clientno];
-			VoiceMethod = responsecontent.GetAccountsProperty ("VoiceMethod")[clientno];
-			VoiceFallbackUrl = responsecontent.GetAccountsProperty ("VoiceFallbackUrl")[clientno];
-			VoiceFallbackMethod = responsecontent.GetAccountsProperty ("VoiceFallbackMethod")[clientno];
-			VoiceApplication = responsecontent.GetAccountsProperty ("VoiceApplication")[clientno];
-			Uri = responsecontent.GetAccountsProperty ("Uri")[clientno];
+			Properties.Sid = responsecontent.GetAccountsProperty ("Sid")[clientno];
+			Properties.DateCreated = responsecontent.GetAccountsProperty ("DateCreated")[clientno];
+			Properties.DateUpdated = responsecontent.GetAccountsProperty ("DateUpdated")[clientno];
+			Properties.FriendlyName = responsecontent.GetAccountsProperty ("FriendlyName")[clientno];
+			Properties.AccountSid = responsecontent.GetAccountsProperty ("AccountSid")[clientno];
+			Properties.ApiVersion = responsecontent.GetAccountsProperty ("ApiVersion")[clientno];
+			Properties.Login = responsecontent.GetAccountsProperty ("Login")[clientno];
+			Properties.Password = responsecontent.GetAccountsProperty ("Password")[clientno];
+			Properties.Status = responsecontent.GetAccountsProperty ("Status")[clientno];
+			Properties.VoiceUrl = responsecontent.GetAccountsProperty ("VoiceUrl")[clientno];
+			Properties.VoiceMethod = responsecontent.GetAccountsProperty ("VoiceMethod")[clientno];
+			Properties.VoiceFallbackUrl = responsecontent.GetAccountsProperty ("VoiceFallbackUrl")[clientno];
+			Properties.	VoiceFallbackMethod = responsecontent.GetAccountsProperty ("VoiceFallbackMethod")[clientno];
+			Properties.VoiceApplication = responsecontent.GetAccountsProperty ("VoiceApplication")[clientno];
+			Properties.Uri = responsecontent.GetAccountsProperty ("Uri")[clientno];
 		}
 		public Client (string responsecontent)
 		{
-			Sid = responsecontent.GetAccountProperty ("Sid");
-			DateCreated = responsecontent.GetAccountProperty ("DateCreated");
-			DateUpdated = responsecontent.GetAccountProperty ("DateUpdated");
-			FriendlyName = responsecontent.GetAccountProperty ("FriendlyName");
-			AccountSid = responsecontent.GetAccountProperty ("AccountSid");
-			ApiVersion = responsecontent.GetAccountProperty ("ApiVersion");
-			Login = responsecontent.GetAccountProperty ("Login");
-			Password = responsecontent.GetAccountProperty ("Password");
-			Status = responsecontent.GetAccountProperty ("Status");
-			VoiceMethod = responsecontent.GetAccountProperty ("VoiceMethod");
-			VoiceFallbackMethod = responsecontent.GetAccountProperty ("VoiceFallbackMethod");
-			Uri = responsecontent.GetAccountProperty ("Uri");
+			Properties.Sid = responsecontent.GetAccountProperty ("Sid");
+			Properties.DateCreated = responsecontent.GetAccountProperty ("DateCreated");
+			Properties.DateUpdated = responsecontent.GetAccountProperty ("DateUpdated");
+			Properties.FriendlyName = responsecontent.GetAccountProperty ("FriendlyName");
+			Properties.AccountSid = responsecontent.GetAccountProperty ("AccountSid");
+			Properties.ApiVersion = responsecontent.GetAccountProperty ("ApiVersion");
+			Properties.Login = responsecontent.GetAccountProperty ("Login");
+			Properties.Password = responsecontent.GetAccountProperty ("Password");
+			Properties.Status = responsecontent.GetAccountProperty ("Status");
+			Properties.VoiceMethod = responsecontent.GetAccountProperty ("VoiceMethod");
+			Properties.VoiceFallbackMethod = responsecontent.GetAccountProperty ("VoiceFallbackMethod");
+			Properties.Uri = responsecontent.GetAccountProperty ("Uri");
 		}
 		public void Delete(String sid, string authtoken){
-			RestClient client = new RestClient (Account.baseurl+"Accounts/"+sid+"/Clients/"+Sid);
+			RestClient client = new RestClient (Account.baseurl+"Accounts/"+sid+"/Clients/"+Properties.Sid);
 			RestRequest request = new RestRequest (Method.DELETE);
 			client.Authenticator = new HttpBasicAuthenticator (sid, authtoken);
 			client.Execute (request);
 
 		}
 		public void ChangePassword(String sid, string authtoken,string NewPassword){
-			RestClient client = new RestClient (Account.baseurl+"Accounts/"+sid+"/Clients/"+Sid);
+			RestClient client = new RestClient (Account.baseurl+"Accounts/"+sid+"/Clients/"+Properties.Sid);
 			RestRequest request = new RestRequest (Method.PUT);
 			client.Authenticator = new HttpBasicAuthenticator (sid, authtoken);
 			request.AddParameter ("Password", NewPassword);

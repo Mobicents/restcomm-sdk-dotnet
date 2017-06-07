@@ -88,13 +88,16 @@ namespace RestComm
 
 			List<Call> calllist=new List<Call>();
 			List<string> Sidlist = response.Content.GetAccountsProperty ("Sid");
-			int count = Sidlist.Count;
-			for (int j = 0; j < count; j++) {
+			if (Sidlist != null) {
+				int count = Sidlist.Count;
+				for (int j = 0; j < count; j++) {
 
-				calllist.Add (new Call (response.Content, j));
+					calllist.Add (new Call (response.Content, j));
 
+				}
+				return calllist;
 			}
-			return calllist;
+			return null;
 		}
 	}
 

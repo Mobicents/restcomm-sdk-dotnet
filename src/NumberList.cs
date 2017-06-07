@@ -66,16 +66,22 @@ namespace RestComm
 			var content = res.Content;
 
 			List<string> friendlyname = content.GetAccountsProperty ("FriendlyName");
-			List<string> Phonenumbers = content.GetAccountsProperty ("PhoneNumber");
-			List<string> IsoCountry = content.GetAccountsProperty ("IsoCountry");
-			List<PhoneNumber> numberlist=new List<PhoneNumber>();
-			int j = 0;
-			foreach (string s in friendlyname) {
+			if (friendlyname != null) {
+
+			
+				List<string> Phonenumbers = content.GetAccountsProperty ("PhoneNumber");
+				List<string> IsoCountry = content.GetAccountsProperty ("IsoCountry");
+				List<PhoneNumber> numberlist = new List<PhoneNumber> ();
+				int j = 0;
+				foreach (string s in friendlyname) {
 				
-				numberlist.Add (new PhoneNumber (friendlyname [j], Phonenumbers [j], IsoCountry [j]));
-				j++;
-			}
-			return numberlist;
+					numberlist.Add (new PhoneNumber (friendlyname [j], Phonenumbers [j], IsoCountry [j]));
+					j++;
+				}
+				return numberlist;
+			} else
+				return null;
+
 		}
 
 

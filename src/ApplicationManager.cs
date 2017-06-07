@@ -37,16 +37,19 @@ namespace RestComm
 			string content = response.Content;
 
 				List<string> Sidlist = content.GetAccountsProperty (Property.Sid);
+		if (Sidlist != null) {
 				List<Application> applist = new List<Application> ();
 				
 				foreach (string s in Sidlist) {
 					
-				applist.Add (new Application(Properties.Sid,Properties.authtoken,s));
+					applist.Add (new Application (Properties.Sid, Properties.authtoken, s));
 
 				}
 
 	
 				return applist;
+			} else
+				return null;
 
 		}
 
@@ -93,7 +96,7 @@ namespace RestComm
 			Properties.DateUpdated = content.GetAccountProperty (Property.DateUpdated);
 			Properties.DateCreated = content.GetAccountProperty (Property.DateCreated);
 			Properties.APIversion = content.GetAccountProperty (Property.ApiVersion);
-			//Kind = content.GetAccountProperty (Property.Kind);
+			Properties.Kind = content.GetAccountProperty (Property.Kind);
 			Properties.authtoken = tokenno;
 			
 

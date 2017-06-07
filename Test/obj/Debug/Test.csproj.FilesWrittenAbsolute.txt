@@ -1,0 +1,9 @@
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/Test.dll.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/Test.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/obj/Debug/Test.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/obj/Debug/Test.dll.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/nunit.framework.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/RestComm.dll.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/Test/bin/Debug/RestSharp.dll

@@ -44,7 +44,6 @@
     <Compile Include="src\ApplicationManager.cs" />
     <Compile Include="src\xmloperations.cs" />
     <Compile Include="src\NumberList.cs" />
-    <Compile Include="src\NUnitTestClass.cs" />
     <Compile Include="src\Call.cs" />
     <Compile Include="src\Client.cs" />
     <Compile Include="src\Email.cs" />

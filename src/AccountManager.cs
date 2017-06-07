@@ -114,14 +114,17 @@ namespace RestComm
 			IRestResponse response = client.Execute (login);
 			var content = response.Content;
 			List<string> sidlist = content.GetAccountsProperty (Property.Sid);
-			List<string> authtokenlist=content.GetAccountsProperty (Property.AuthToken);
+			if (sidlist != null) {
+				List<string> authtokenlist = content.GetAccountsProperty (Property.AuthToken);
 
-			List<SubAccount> subaccountlist = new List<SubAccount> ();
-			for(int i=0;i<sidlist.Count;i++){
-				subaccountlist.Add (new SubAccount (sidlist [i], authtokenlist [i]));
+				List<SubAccount> subaccountlist = new List<SubAccount> ();
+				for (int i = 0; i < sidlist.Count; i++) {
+					subaccountlist.Add (new SubAccount (sidlist [i], authtokenlist [i]));
 
-			}
-			return subaccountlist;
+				}
+				return subaccountlist;
+			} else
+				return null;
 
 		}
 
