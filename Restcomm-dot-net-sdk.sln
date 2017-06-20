@@ -5,19 +5,21 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restcomm-dot-net-sdk", "Restcomm-dot-net-sdk\Restcomm-dot-net-sdk.csproj", "{812EE6AB-B6DF-4F94-A9A5-2A17930BF53A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsExample", "ConsoleApplication1\AccountsExample.csproj", "{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{AD26F57A-5F53-4B9E-92BC-09D709C83CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationExample", "ApplicationExample\ApplicationExample.csproj", "{CD81C29B-D378-464E-88BE-9910B3AAFE4B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallExample", "CallExample\CallExample.csproj", "{C7CF103C-E70E-45FE-B51B-18E0D8181BA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsExample", "Examples\AccountsExample\AccountsExample.csproj", "{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExample", "ClientExample\ClientExample.csproj", "{A1F8825E-9F68-45F7-80BE-C4F07EDD47E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationExample", "Examples\ApplicationExample\ApplicationExample.csproj", "{CD81C29B-D378-464E-88BE-9910B3AAFE4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailExample", "EmailExample\EmailExample.csproj", "{5F97E929-774E-4F46-9A4F-3043786236F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallExample", "Examples\CallExample\CallExample.csproj", "{C7CF103C-E70E-45FE-B51B-18E0D8181BA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberExamples", "NumberExamples\NumberExamples.csproj", "{489B40CB-8709-4653-A51C-CFB06F656BC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExample", "Examples\ClientExample\ClientExample.csproj", "{A1F8825E-9F68-45F7-80BE-C4F07EDD47E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailExample", "Examples\EmailExample\EmailExample.csproj", "{5F97E929-774E-4F46-9A4F-3043786236F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberExamples", "Examples\NumberExamples\NumberExamples.csproj", "{489B40CB-8709-4653-A51C-CFB06F656BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +31,14 @@ Global
 		{812EE6AB-B6DF-4F94-A9A5-2A17930BF53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{812EE6AB-B6DF-4F94-A9A5-2A17930BF53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{812EE6AB-B6DF-4F94-A9A5-2A17930BF53A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD26F57A-5F53-4B9E-92BC-09D709C83CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD26F57A-5F53-4B9E-92BC-09D709C83CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD26F57A-5F53-4B9E-92BC-09D709C83CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD26F57A-5F53-4B9E-92BC-09D709C83CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD81C29B-D378-464E-88BE-9910B3AAFE4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD81C29B-D378-464E-88BE-9910B3AAFE4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD81C29B-D378-464E-88BE-9910B3AAFE4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,5 +62,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F6A14CF-3B4A-4E4B-9566-3609C86F7176} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
+		{CD81C29B-D378-464E-88BE-9910B3AAFE4B} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
+		{C7CF103C-E70E-45FE-B51B-18E0D8181BA7} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
+		{A1F8825E-9F68-45F7-80BE-C4F07EDD47E5} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
+		{5F97E929-774E-4F46-9A4F-3043786236F0} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
+		{489B40CB-8709-4653-A51C-CFB06F656BC2} = {B29F8670-FEF8-4DA2-A579-816BCA8BEB8B}
 	EndGlobalSection
 EndGlobal

@@ -100,7 +100,7 @@ namespace org.restcomm.connect.sdk.dotnet
             catch (Exception ex)
             {
 
-                throw new XmlException(xmldoc);
+                throw ex;
             }
         }
 

@@ -46,8 +46,7 @@ namespace org.restcomm.connect.sdk.dotnet
     {
         private RestClient Client;
         private RestRequest Request;
-        private List<string> searchparameter;
-        private List<string> parameterValue;
+       
 
         public NumberFilter(RestClient client, RestRequest request)
         {
@@ -58,15 +57,7 @@ namespace org.restcomm.connect.sdk.dotnet
         {
             Request.AddQueryParameter(ParameterName, ParameterValue);
         }
-        public void AddSearchParameter(List<String> ParameterName, List<String> ParameterValue)
-        {
-            if (ParameterValue.Count == ParameterName.Count)
-            {
-
-                searchparameter.AddRange(ParameterName);
-                parameterValue.AddRange(ParameterValue);
-            }
-        }
+       
         public List<PhoneNumber> Search()
         {
 

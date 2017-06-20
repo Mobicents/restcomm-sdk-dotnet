@@ -1,7 +1,0 @@
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/bin/Debug/Client.exe.mdb
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/bin/Debug/Client.exe
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/obj/x86/Debug/Client.exe
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/obj/x86/Debug/Client.exe.mdb
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/bin/Debug/RestComm.dll
-/home/hannibal/Documents/restcomm-sdk-dotnet/Examples/Client/bin/Debug/RestSharp.dll
