@@ -157,13 +157,16 @@ namespace org.restcomm.connect.sdk.dotnet
             {
                 RestClient client = new RestClient(Account.baseurl + "Accounts/" + AccountSId + "/Calls.json/" + Properties.sid);
                 RestRequest makecallmodification = new RestRequest(Method.POST);
-                client.Authenticator = new HttpBasicAuthenticator(AccountSId, AuthToken);
+                client.Authenticator = new HttpBasicAuthenticator(AccountSId,AuthToken);
             foreach (var pair in parameter)
             {
                 makecallmodification.AddParameter(pair.Key, pair.Value);
             }
-                client.Execute(makecallmodification);
-            }
+                IRestResponse response= client.Execute(makecallmodification);
+                var content = response.Content;
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            Properties = JsonConvert.DeserializeObject<callProperties>(content);
+        }
 
 
         }
