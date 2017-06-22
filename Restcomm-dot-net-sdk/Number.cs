@@ -24,6 +24,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+
 using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
@@ -64,10 +65,12 @@ namespace org.restcomm.connect.sdk.dotnet
         {
 
             IRestResponse res = Client.Execute(Request);
-          
+            
             var content = res.Content;
-        
+ 
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+
+           
           var  Propertieslist = JsonConvert.DeserializeObject<List<numberProperties>>(content);
           
             List<PhoneNumber> phonenumberlist = new List<PhoneNumber>();

@@ -11,14 +11,14 @@ class MainClass
         //Creates application
         Application app = akount.CreateApplication("testappps");
 
-        Console.WriteLine(app.Properties.Sid);
+        Console.WriteLine(app.Properties.sid);
 
         //Get list of all application
         List<Application> applist = akount.GetApplicationList();
         //prints name of all 
         foreach (Application a in applist)
         {
-            Console.WriteLine(a.Properties.FriendlyName);
+            Console.WriteLine(a.Properties.friendly_Name);
         }
         //deletes application 
         app.Delete();

@@ -53,7 +53,7 @@ namespace Test
         string clientresponse = "{\n  \"sid\": \"dummyclient\",\n  \"date_created\": \"Mon, 19 Jun 2017 19:50:19 +0000\",\n  \"date_updated\": \"Mon, 19 Jun 2017 19:50:19 +0000\",\n  \"account_sid\": \"AC43b4d94a9b2b1862583c8638b70d26f2\",\n  \"api_version\": \"2012-04-24\",\n  \"friendly_name\": \"DemoClient\",\n  \"login\": \"DemoClient\",\n  \"password\": \"Demo@1234\",\n  \"status\": \"1\",\n  \"voice_method\": \"POST\",\n  \"voice_fallback_method\": \"POST\",\n  \"uri\": \"/2012-04-24/Accounts/AC43b4d94a9b2b1862583c8638b70d26f2/Clients/CL0e6aa31b0c36401ea5abd728187f3623.json\"\n}";
         string appresponse = "{\n  \"sid\": \"dummyapp\",\n  \"date_created\": \"Mon, 19 Jun 2017 20:45:35 +0000\",\n  \"date_updated\": \"Mon, 19 Jun 2017 20:45:35 +0000\",\n  \"friendly_name\": \"testappps\",\n  \"account_sid\": \"AC43b4d94a9b2\",\n  \"api_version\": \"2012-04-24\",\n  \"voice_caller_id_lookup\": false,\n  \"uri\": \"/2012-04-24/Accounts/AC43b4d94a9b2/Applications/APdb12dfe7961d4a1b8e6b.json\"\n}";
         string emailresponse = "{\n  \"date_sent\": \"2017-06-19T21:04:56.040Z\",\n  \"account_sid\": \"AC43b4d94a9b2\",\n  \"from\": \"demo123@localhost.com\",\n  \"to\": \"demo345@localhost.com\",\n  \"body\": \"This is a test email\",\n  \"subject\": \"Test\"\n}";
-
+        string numberresponse = "[{ \"friendlyName\": \"+12034848530\", \"phoneNumber\": \"12034848530\", \"isoCountry\": \"US\", \"cost\": \"0.67\", \"voiceCapable\": \"true\", \"smsCapable\": \"true\" }]";
         [TestInitialize]
         public void Login()
         {
@@ -186,6 +186,14 @@ namespace Test
             MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Email/Messages.json", paradictionary, emailresponse);
             akount.SendEmail("emailid1", "emailid2", "emailbody","Subject").Send();
             //will throw a error if something goes wrong
+        }
+        [TestMethod]
+        public void NumberSearch()
+        {
+            numberresponse=numberresponse.Replace((char)39,'"');
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/AvailablePhoneNumbers/US/Local.json", numberresponse);
+           var numberlist= akount.SearchPhoneNumbers("US").Search();
+            Assert.AreEqual("0.67", numberlist[0].Properties.cost); 
         }
     }
 }

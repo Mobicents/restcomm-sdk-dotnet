@@ -10,16 +10,16 @@ namespace Calls
         {
 
             //Login 
-         //   Account akount = new Account("Enter your sid here", "Enter your authtoken here", "https://cloud.restcomm.com/restcomm/2012-04-24/");
-            Account akount = new Account("AC13b4372c92ed5c07d951cf842e2664ff", "cb0936cfee986d3e3ec6d1d77cc57888", "https://cloud.restcomm.com/restcomm/2012-04-24/");
+            Account akount = new Account("Enter your sid here", "Enter your authtoken here", "https://cloud.restcomm.com/restcomm/2012-04-24/");
+
             //Makes call
-         //   var OutBCall = akount.MakeCall("From?", "client:democlients", "http://cloud.restcomm.com/restcomm/demos/hello-play.xml");
+            var OutBCall = akount.MakeCall("From?", "client:democlients", "http://cloud.restcomm.com/restcomm/demos/hello-play.xml");
             //adds parameter in call
-         //   OutBCall.AddParameter("Timeout", "15");
-          //  Call call = OutBCall.call();
+            OutBCall.AddParameter("Timeout", "15");
+            Call call = OutBCall.call();
 
             //Prints call status
-           // Console.WriteLine(call.Properties.Status);
+            Console.WriteLine(call.Properties.status);
 
             //Gets list of all call
             List<Call> calllist = akount.GetCallDetail().Search();
