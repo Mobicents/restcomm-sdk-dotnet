@@ -61,7 +61,6 @@
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="property.cs" />
-    <Compile Include="xmloperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

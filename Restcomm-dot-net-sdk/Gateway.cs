@@ -29,9 +29,9 @@ namespace org.restcomm.connect.sdk.dotnet
     {
         public string GetGatewayList()
         {
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Management/Gateways.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Management/Gateways.json");
             RestRequest request = new RestRequest(Method.GET);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             IRestResponse response = client.Execute(request);
             return response.Content;
 
@@ -47,11 +47,7 @@ namespace org.restcomm.connect.sdk.dotnet
         {
 
         }
-        /*public Gateway(IRestResponse){
-			this.Sid = Sid;
-			this.AuthToken = Authtoken;
-		}
-*/
+        
     }
 }
 

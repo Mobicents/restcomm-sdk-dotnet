@@ -23,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Authenticators;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 
 
@@ -50,48 +52,34 @@ namespace org.restcomm.connect.sdk.dotnet
 
             IRestResponse response = client.Execute(login);
             var content = response.Content;
-
-            Properties.Sid = content.GetPropertyJson("sid");
-            Properties.friendlyname = content.GetPropertyJson("friendly_name");
-            Properties.status = content.GetPropertyJson("status");
-            Properties.dateupdated = content.GetPropertyJson("date_updated");
-            Properties.datecreated = content.GetPropertyJson("date_created");
-            Properties.authtoken = content.GetPropertyJson("auth_token");
+           
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            Properties = JsonConvert.DeserializeObject<accountProperties>(content);
+        
 
         }
 
         public void ChangePassword(string NewPassword)
         {
 
-            RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.Sid);
+            RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.sid);
             RestRequest login = new RestRequest(Method.POST);
 
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             login.AddParameter("Password", NewPassword);
             IRestResponse response = client.Execute(login);
             var content = response.Content;
 
 
 
-            Properties.dateupdated = content.GetPropertyJson("date_updated");
+            Properties.date_updated = content.GetPropertyJson("date_updated");
 
-            Properties.authtoken = content.GetPropertyJson("auth_token");
+            Properties.auth_token = content.GetPropertyJson("auth_token");
 
 
 
         }
 
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// this will create a subaccount .
-        /// </summary>
         public SubAccount CreateSubAccount(string FriendlyName, string emailid, string password)
         {
 
@@ -100,9 +88,10 @@ namespace org.restcomm.connect.sdk.dotnet
             login.AddParameter("FriendlyName", FriendlyName);
             login.AddParameter("EmailAddress", emailid);
             login.AddParameter("Password", password);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             IRestResponse response = client.Execute(login);
             var content = response.Content;
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
             SubAccount newaccount = new SubAccount(content.GetPropertyJson("sid"), content.GetPropertyJson("auth_token"), Account.baseurl);
            return newaccount;
 
@@ -114,7 +103,7 @@ namespace org.restcomm.connect.sdk.dotnet
 
             RestClient client = new RestClient(baseurl + "Accounts.json");
             RestRequest login = new RestRequest(Method.GET);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             IRestResponse response = client.Execute(login);
             var content = response.Content;
             
@@ -153,9 +142,9 @@ namespace org.restcomm.connect.sdk.dotnet
 
         public string CloseSubAccount()
         {
-            RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.Sid);
+            RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.sid);
             RestRequest login = new RestRequest(Method.PUT);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             login.AddParameter("Status", "closed");
             IRestResponse response = client.Execute(login);
             return response.Content;

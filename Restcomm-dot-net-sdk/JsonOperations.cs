@@ -31,41 +31,49 @@ namespace org.restcomm.connect.sdk.dotnet
     {
         public static string GetPropertyJson(this string jsonstring, string property)
         {
+
             jsonstring = Regex.Replace(jsonstring, @"[^\u0000-\u007F]+", string.Empty);
-          
             JObject jdata = JObject.Parse(jsonstring);
             string propertyvalue = jdata.Value<string>(property);
             if (propertyvalue != null)
                 return propertyvalue;
-            else return null;
+            else return "";
         }
-        public static List<string> GetPropertiesJson(this string jsonstring,string property)
+        public static List<string> GetPropertiesJson(this string jsonstring, string property)
         {
             jsonstring = Regex.Replace(jsonstring, @"[^\u0000-\u007F]+", string.Empty);
             JArray j;
-        
+
             if (jsonstring.ToLower().Contains('['))
             {
-             
-                jsonstring ="["+ jsonstring.Split('[', ']')[1]+"]";
+
+                jsonstring = "[" + jsonstring.Split('[', ']')[1] + "]";
                 jsonstring = Regex.Replace(jsonstring, @"[^\u0000-\u007F]+", string.Empty);
-             
+
             }
 
-            try
-            {
-                 j = JArray.Parse(jsonstring);
-            }
-            catch(Newtonsoft.Json.JsonException ex)
-            {
-                throw ex;
-            }
+           
+                j = JArray.Parse(jsonstring);
+         
+           
             var values = j.Values<string>(property).ToArray();
-            List<string> valuelist=values.Cast<string>().ToList<string>();
-            if (valuelist != null)
-                return valuelist;
-            else return null;
-            
+            List<string> valuelist = new List<string>();
+            if (values != null&&values.Length!=0) { 
+                    valuelist = values.Cast<string>().ToList();
+
+                    return valuelist;
+        }
+            else
+            {
+                List<string> empty = new List<string>();
+                int i = 0;
+                while (i<200)
+                {
+                    empty.Add("");
+                    i++;
+                }
+                return empty;
+            }
         }
     }
 

@@ -78,6 +78,29 @@ namespace Test
 
 
         }
+        public static void AddPutRequest(string path, Dictionary<string, string> parameter, string response)
+        {
+
+            List<string> paralist = new List<string>();
+            foreach (var pair in parameter)
+            {
+                paralist.Add(pair.Key + "=" + pair.Value);
+
+            }
+
+
+            server
+                    .Given(Request.Create().WithPath(path)
+                        .UsingPost()
+                        .WithBody(b => b.Contain(paralist))
+                            .WithHeader("Authorization", "Basic " + Convert.ToBase64String(
+                                System.Text.Encoding.ASCII.GetBytes(
+                                    string.Format("{0}:{1}", Sid, AuthToken))))
+                        )
+                        .RespondWith(Response.Create()
+                            .WithStatusCode(200)
+                            .WithBody(response));
+        }
         public static void AddPostRequest(string path, Dictionary<string, string> parameter, string response)
         {
 

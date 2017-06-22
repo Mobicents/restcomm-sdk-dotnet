@@ -31,6 +31,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
+
 namespace Test
 {//In Credentials.txt(Project/bin/Debug)
  //First Line : Account Sid
@@ -71,7 +72,7 @@ namespace Test
         [TestMethod]
         public void AccountLogin()
         {
-            Assert.AreEqual( "test", akount.Properties.Sid);
+            Assert.AreEqual( "test", akount.Properties.sid);
 
         }
         [TestMethod]
@@ -81,10 +82,10 @@ namespace Test
             var paradictionary = new Dictionary<string, string>();
             paradictionary.Add("Password", "newpassword");
             MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts.json/" + Sid, paradictionary, changepasswordresponse);
-            string oldauthtoken = akount.Properties.authtoken;
+            string oldauthtoken = akount.Properties.auth_token;
                 akount.ChangePassword("newpassword");
 
-                string newauthtoken = akount.Properties.authtoken;
+                string newauthtoken = akount.Properties.auth_token;
                 Assert.AreNotEqual(newauthtoken, oldauthtoken);
 
             
@@ -102,7 +103,7 @@ namespace Test
             
             SubAccount a = akount.CreateSubAccount ("password", "b", "c");
           
-            Assert.IsNotNull(a.Properties.friendlyname);
+            Assert.IsNotNull(a.Properties.friendly_name);
             }
 
           
@@ -122,16 +123,16 @@ namespace Test
             paradictionary.Add("From", "Client1");
            paradictionary.Add("To", "Client2");
             paradictionary.Add("Url", "site.com");
-            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" +akount.Properties.Sid + "/Calls.json", paradictionary, callresponse);
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" +akount.Properties.sid + "/Calls.json", paradictionary, callresponse);
             
            Call calldetail= akount.MakeCall("Client1", "Client2", "site.com").call();
-            Assert.AreEqual("testcall", calldetail.Properties.Sid);
+            Assert.AreEqual("testcall", calldetail.Properties.sid);
         }
         [TestMethod]
         public void GetCallDetail()
         {
             string calldetailresponse = "[" + callresponse + "]";
-            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/"+akount.Properties.Sid+"/Calls.json", calldetailresponse);
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/"+akount.Properties.sid+"/Calls.json", calldetailresponse);
            List<Call> calllist= akount.GetCallDetail().Search();
             Assert.AreEqual(1, calllist.Count);
         }
@@ -141,15 +142,15 @@ namespace Test
             var paradictionary = new Dictionary<string, string>();
             paradictionary.Add("Login", "username");
             paradictionary.Add("Password", "password");
-            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Clients.json", paradictionary, clientresponse);
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Clients.json", paradictionary, clientresponse);
            Client c= akount.makeclient("username", "password").Create();
-            Assert.AreEqual("dummyclient", c.Properties.Sid);
+            Assert.AreEqual("dummyclient", c.Properties.sid);
         }
         [TestMethod]
         public void ClientList()
         {
         string    clientlistresponse = "["+clientresponse+ "]";
-            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Clients.json",clientlistresponse);
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Clients.json",clientlistresponse);
             List<Client> clientlist = akount.GetClientList();
             Assert.AreEqual(1, clientlist.Count);
         }
@@ -158,18 +159,18 @@ namespace Test
         {
             var paradictionary = new Dictionary<string, string>();
             paradictionary.Add("FriendlyName", "appname");
-            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Applications.json", paradictionary, appresponse);
-            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Applications" + "/dummyapp.json", appresponse);
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Applications.json", paradictionary, appresponse);
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Applications" + "/dummyapp.json", appresponse);
             Application a= akount.CreateApplication("appname");
-            Assert.AreEqual("dummyapp", a.Properties.Sid);
+            Assert.AreEqual("dummyapp", a.Properties.sid);
 
         }
         [TestMethod]
         public void applist()
         {
             string applistresponse = "[" + appresponse + "]";
-            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Applications.json", applistresponse);
-            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Applications"+"/dummyapp.json", appresponse);
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Applications.json", applistresponse);
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Applications"+"/dummyapp.json", appresponse);
             List<Application> a = akount.GetApplicationList();
             Assert.AreEqual(1, a.Count);
         }
@@ -182,11 +183,9 @@ namespace Test
             paradictionary.Add("Body", "emailbody");
             paradictionary.Add("Subject", "Subject");
            
-            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.Sid + "/Email/Messages.json", paradictionary, emailresponse);
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Email/Messages.json", paradictionary, emailresponse);
             akount.SendEmail("emailid1", "emailid2", "emailbody","Subject").Send();
             //will throw a error if something goes wrong
         }
-       
-
     }
 }

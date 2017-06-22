@@ -24,18 +24,19 @@ using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
-//Not complete
+
 namespace org.restcomm.connect.sdk.dotnet
 {
-    //In 
+    
     public partial class Account
     {
         public makecall MakeCall(string From, string To, string Url)
         {
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Calls.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Calls.json");
             RestRequest makecall = new RestRequest(Method.POST);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             makecall.AddParameter("From", From);
             makecall.AddParameter("To", To);
             makecall.AddParameter("Url", Url);
@@ -47,7 +48,7 @@ namespace org.restcomm.connect.sdk.dotnet
         {
 
             RestRequest makecall = new RestRequest(Method.GET);
-            return new CallFilter(makecall, Properties.Sid, Properties.authtoken);
+            return new CallFilter(makecall, Properties.sid, Properties.auth_token);
 
         }
 
@@ -96,112 +97,87 @@ namespace org.restcomm.connect.sdk.dotnet
             client = new RestClient(clienturl);
             client.Authenticator = new HttpBasicAuthenticator(Sid, TokenNo);
             IRestResponse response = client.Execute(request);
+            var content = response.Content;
 
+            content = "[" + content.Split('[', ']')[1] + "]";
+
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            var callsproperties = JsonConvert.DeserializeObject<List<callProperties>>(content);
             List<Call> calllist = new List<Call>();
-            List<string> Sidlist = response.Content.GetPropertiesJson("sid");
-            if (Sidlist != null)
+            foreach(callProperties c in callsproperties)
             {
-                int count = Sidlist.Count;
-                for (int j = 0; j < count; j++)
-                {
-
-                    calllist.Add(new Call(response.Content, j));
-
-                }
-                return calllist;
+                calllist.Add(new Call(c));
             }
-            return null;
+            return calllist;
+            
         }
-    }
-
-    public class makecall
-    {
-
-        RestClient Client;
-        RestRequest Request;
-        public makecall(RestClient client, RestRequest request)
-        {
-            Client = client;
-
-            Request = request;
-
+        
         }
-        public void AddParameter(string ParameterName, string ParameterValue)
+
+
+        public class makecall
         {
 
-            Request.AddParameter(ParameterName, ParameterValue);
+            RestClient Client;
+            RestRequest Request;
+            public makecall(RestClient client, RestRequest request)
+            {
+                Client = client;
 
+                Request = request;
+
+            }
+            public void AddParameter(string ParameterName, string ParameterValue)
+            {
+
+                Request.AddParameter(ParameterName, ParameterValue);
+
+            }
+            public Call call()
+            {
+                IRestResponse response = Client.Execute(Request);
+            var content = response.Content;
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            callProperties properties = JsonConvert.DeserializeObject<callProperties>(content);
+                Call newcall = new Call(properties);
+            return newcall;
+            }
         }
-        public Call call()
-        {
-            IRestResponse response = Client.Execute(Request);
-           
-            return new Call(response.Content);
-        }
 
-
-    }
-
-    public class Call
-    {
-
-        public callProperties Properties;
-
-        public Call(string response)
-        {
-            Properties.Sid = response.GetPropertyJson("sid");
-            Properties.ParentCallSid = response.GetPropertyJson("parent_call_sid");
-            Properties.DateCreated = response.GetPropertyJson("date_created");
-            Properties.DateUpdated = response.GetPropertyJson("date_updated");
-            Properties.To = response.GetPropertyJson("to");
-            Properties.From = response.GetPropertyJson("from");
-           // Properties.PhoneNumberSid = xmlresponse.GetAccountProperty("PhoneNumberSid");
-            Properties.Status = response.GetPropertyJson("status");
-            Properties.StartTime =response.GetPropertyJson("start_time"); 
-            Properties.EndTime = response.GetPropertyJson("end_time");
-            Properties.Duration = response.GetPropertyJson("duration");
-            Properties.Price = response.GetPropertyJson("price");
-            Properties.Direction = response.GetPropertyJson("direction");
-            Properties.AnsweredBy = response.GetPropertyJson("answered_by");
-            Properties.ApiVersion = response.GetPropertyJson("api_version");
-            Properties.ForwardFrom = response.GetPropertyJson("forward_from");
-            Properties.CallerName = response.GetPropertyJson("caller_name");
-            Properties.Uri = response.GetPropertyJson("uri");
-        }
-        //use this constructor when there is list of call in response
-        public Call(string response, int elementunmber)
+        public class Call
         {
 
-            Properties.Sid = response.GetPropertiesJson("sid")[elementunmber];
+            public callProperties Properties;
+            public Call(callProperties properties)
+            {
+                Properties = properties;
+            }
+       
+            public void ModifyCall(Dictionary<string,string> parameter, String AccountSId, String AuthToken)
+            {
+                RestClient client = new RestClient(Account.baseurl + "Accounts/" + AccountSId + "/Calls.json/" + Properties.sid);
+                RestRequest makecallmodification = new RestRequest(Method.POST);
+                client.Authenticator = new HttpBasicAuthenticator(AccountSId, AuthToken);
+            foreach (var pair in parameter)
+            {
+                makecallmodification.AddParameter(pair.Key, pair.Value);
+            }
+                client.Execute(makecallmodification);
+            }
 
-           // Properties.ParentCallSid = response.GetPropertiesJson("parent_call_sid")[elementunmber];
-            Properties.DateCreated = response.GetPropertiesJson("date_created")[elementunmber];
-            Properties.DateUpdated =response.GetPropertiesJson("date_updated")[elementunmber];
-            Properties.To = response.GetPropertiesJson("to")[elementunmber];
-            Properties.From = response.GetPropertiesJson("from")[elementunmber];
-        //    Properties.PhoneNumberSid = response.GetPropertiesJson("ParentCallSid")[elementunmber];
-            Properties.Status = response.GetPropertiesJson("status")[elementunmber];
-            Properties.StartTime = response.GetPropertiesJson("start_time")[elementunmber];
-            //Properties.EndTime = response.GetPropertiesJson("end_time")[elementunmber];
-            //Properties.Duration = response.GetPropertiesJson("ring_duration")==null?null: response.GetPropertiesJson("ring_duration")[elementunmber];
-            //Properties.Price = response.GetPropertiesJson("price_unit")[elementunmber];
-            Properties.Direction = response.GetPropertiesJson("direction")[elementunmber];
-         //   Properties.AnsweredBy = response.GetPropertiesJson("answered_by")[elementunmber];
-            //Properties.ApiVersion = response.GetPropertiesJson("api_version")[elementunmber];
-           // Properties.ForwardFrom = response.GetPropertiesJson("forward_from")[elementunmber];
-            //Properties.CallerName = response.GetPropertiesJson("caller_name")[elementunmber];
-            //Properties.Uri = response.GetPropertiesJson("uri")[elementunmber];
+
         }
-        public void ModifyCall(string ParameterName, string NewParameterValue, String AccountSId, String AuthToken)
+        public struct CallParameters
         {
-            RestClient client = new RestClient(Account.baseurl + "Accounts/" + AccountSId + "/Calls.json/" + Properties.Sid);
-            RestRequest makecallmodification = new RestRequest(Method.POST);
-            client.Authenticator = new HttpBasicAuthenticator(AccountSId, AuthToken);
-            makecallmodification.AddParameter(ParameterName, NewParameterValue);
-            client.Execute(makecallmodification);
+            public string Method { get { return "Method"; } }
+            public string FallbackUrl { get { return "FallbackUrl"; } }
+            public string FallbackMethod { get { return "FallbackMethod"; } }
+            public string statusCallbackEvent { get { return "statusCallbackEvent"; } }
+            public string statusCallback { get { return "statusCallback"; } }
+            public string statusCallbackMethod { get { return "statusCallbackMethod"; } }
+            public string Timeout { get { return "Timeout"; } }
         }
 
-
-    }
+    
 }
 

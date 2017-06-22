@@ -23,6 +23,8 @@ using System;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
@@ -31,9 +33,9 @@ namespace org.restcomm.connect.sdk.dotnet
     {
         public List<Application> GetApplicationList()
         {
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Applications.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Applications.json");
             RestRequest login = new RestRequest(Method.GET);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             IRestResponse response = client.Execute(login);
 
             string content = response.Content;
@@ -46,7 +48,7 @@ namespace org.restcomm.connect.sdk.dotnet
                 foreach (string s in Sidlist)
                 {
 
-                    applist.Add(new Application(Properties.Sid, Properties.authtoken, s));
+                    applist.Add(new Application(Properties.sid, Properties.auth_token, s));
 
                 }
 
@@ -62,8 +64,8 @@ namespace org.restcomm.connect.sdk.dotnet
         public Application CreateApplication(string FriendlyName, string ApiVersion = null, bool HasVoiceCallerIdLookup = false, string RcmlUrl = null, String Kind = null)
         {
 
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Applications.json");
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Applications.json");
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             RestRequest sendreq = new RestRequest(Method.POST);
             sendreq.AddParameter("FriendlyName", FriendlyName);
             if (ApiVersion != null)
@@ -79,7 +81,7 @@ namespace org.restcomm.connect.sdk.dotnet
 
             IRestResponse response = client.Execute(sendreq);
          
-            return new Application(Properties.Sid, Properties.authtoken, response.Content.GetPropertyJson("sid"));
+            return new Application(Properties.sid, Properties.auth_token, response.Content.GetPropertyJson("sid"));
 
         }
        
@@ -100,23 +102,17 @@ namespace org.restcomm.connect.sdk.dotnet
 
             IRestResponse response = client.Execute(login);
             var content = response.Content;
-            Properties.Sid = content.GetPropertyJson("sid");
-            Properties.AccountSid = content.GetPropertyJson("account_sid");
-            Properties.FriendlyName = content.GetPropertyJson("friendly_name");
-            Properties.DateUpdated = content.GetPropertyJson("date_updated");
-            Properties.DateCreated = content.GetPropertyJson("date_created");
-            Properties.APIversion = content.GetPropertyJson("api_version");
-            Properties.Kind = content.GetPropertyJson("kind");
-            Properties.authtoken = tokenno;
 
-
+           
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            Properties = JsonConvert.DeserializeObject<applicationProperties>(content);
         }
         public void Delete()
         {
 
-            RestClient client = new RestClient(Account.baseurl + "Accounts/" + Properties.AccountSid + "/Applications/" + Properties.Sid+".json");
+            RestClient client = new RestClient(Account.baseurl + "Accounts/" + Properties.account_sid + "/Applications/" + Properties.sid+".json");
             RestRequest login = new RestRequest(Method.DELETE);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.AccountSid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.account_sid, Properties.auth_token);
             client.Execute(login);
 
 

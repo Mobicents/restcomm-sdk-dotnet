@@ -23,6 +23,8 @@ using System;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
@@ -31,29 +33,29 @@ namespace org.restcomm.connect.sdk.dotnet
     {
         public List<Client> GetClientList()
         {
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Clients.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Clients.json");
             RestRequest request = new RestRequest(Method.GET);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             IRestResponse response = client.Execute(request);
+            var content = response.Content;
             List<Client> clientslist = new List<Client>();
-
-            List<string> sidlist = response.Content.GetPropertiesJson("sid");
-            int i = sidlist.Count;
-            for (int j = 0; j < i; j++)
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            var Propertieslist = JsonConvert.DeserializeObject<List<clientProperties>>(content);
+            foreach(clientProperties properties in Propertieslist)
             {
-                clientslist.Add(new Client(response.Content, j));
-
+                clientslist.Add(new Client(properties));
             }
+          
             return clientslist;
 
         }
         public MakeClient makeclient(string Login, string Password)
         {
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Clients.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Clients.json");
             RestRequest request = new RestRequest(Method.POST);
             request.AddParameter("Login", Login);
             request.AddParameter("Password", Password);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
 
             return new MakeClient(client, request);
 
@@ -64,43 +66,14 @@ namespace org.restcomm.connect.sdk.dotnet
     {
 
         public clientProperties Properties;
-
-        public Client(string responsecontent, int clientno)
+        public Client(clientProperties properties)
         {
-            Properties.Sid = responsecontent.GetPropertiesJson("sid")[clientno];
-            Properties.DateCreated = responsecontent.GetPropertiesJson("date_created")[clientno];
-            Properties.DateUpdated = responsecontent.GetPropertiesJson("date_updated")[clientno];
-            Properties.FriendlyName = responsecontent.GetPropertiesJson("friendly_name")[clientno];
-            Properties.AccountSid = responsecontent.GetPropertiesJson("account_sid")[clientno];
-            Properties.ApiVersion = responsecontent.GetPropertiesJson("api_version")[clientno];
-            Properties.Login = responsecontent.GetPropertiesJson("login")[clientno];
-            Properties.Password = responsecontent.GetPropertiesJson("password")[clientno];
-            Properties.Status = responsecontent.GetPropertiesJson("status")[clientno];
-            
-            Properties.VoiceMethod = responsecontent.GetPropertiesJson("voice_method")[clientno];
-           
-            Properties.VoiceFallbackMethod = responsecontent.GetPropertiesJson("voice_fallback_method")[clientno];
-           
-            Properties.Uri = responsecontent.GetPropertiesJson("uri")[clientno];
+            Properties = properties;
         }
-        public Client(string responsecontent)
-        {
-            Properties.Sid = responsecontent.GetPropertyJson("sid");
-            Properties.DateCreated = responsecontent.GetPropertyJson("date_created");
-            Properties.DateUpdated = responsecontent.GetPropertyJson("date_updated");
-            Properties.FriendlyName = responsecontent.GetPropertyJson("friendly_name");
-            Properties.AccountSid = responsecontent.GetPropertyJson("account_sid");
-            Properties.ApiVersion = responsecontent.GetPropertyJson("api_version");
-            Properties.Login = responsecontent.GetPropertyJson("login");
-            Properties.Password = responsecontent.GetPropertyJson("password");
-            Properties.Status = responsecontent.GetPropertyJson("status");
-            Properties.VoiceMethod = responsecontent.GetPropertyJson("voice_method");
-            Properties.VoiceFallbackMethod = responsecontent.GetPropertyJson("voice_fallback_method");
-            Properties.Uri = responsecontent.GetPropertyJson("uri");
-        }
+    
         public void Delete(String sid, string authtoken)
         {
-            RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.Sid+".json");
+            RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.sid+".json");
             RestRequest request = new RestRequest(Method.DELETE);
             client.Authenticator = new HttpBasicAuthenticator(sid, authtoken);
            IRestResponse response= client.Execute(request);
@@ -108,7 +81,7 @@ namespace org.restcomm.connect.sdk.dotnet
         }
         public void ChangePassword(String sid, string authtoken, string NewPassword)
         {
-            RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.Sid+".json");
+            RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.sid+".json");
             RestRequest request = new RestRequest(Method.PUT);
             client.Authenticator = new HttpBasicAuthenticator(sid, authtoken);
             request.AddParameter("Password", NewPassword);
@@ -127,15 +100,17 @@ namespace org.restcomm.connect.sdk.dotnet
             this.request = request;
         }
         public void AddParameter(string ParameterName, string ParameterValue)
-        {
+        {   
             request.AddParameter(ParameterName, ParameterValue);
         }
         public Client Create()
         {
 
             IRestResponse response = client.Execute(request);
-            
-            return new Client(response.Content);
+            var content = response.Content;
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            var Properties = JsonConvert.DeserializeObject<clientProperties>(content);
+            return new Client(Properties);
         }
 
     }

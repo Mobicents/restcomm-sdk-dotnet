@@ -7,28 +7,29 @@ class MainClass
     public static void Main(string[] args)
     {
         //Login 
-        Account akount = new Account("Enter your sid here", "Enter your authtoken here", "https://cloud.restcomm.com/restcomm/2012-04-24/");
+        //  Account akount = new Account("Enter your sid here", "Enter your authtoken here", "https://cloud.restcomm.com/restcomm/2012-04-24/");
         //Creates a client
-        Client client = akount.makeclient("DemoClient", "Demo@1234").Create();
+        Account akount = new Account("AC13b4372c92ed5c07d951cf842e2664ff", "cb0936cfee986d3e3ec6d1d77cc57888", "https://cloud.restcomm.com/restcomm/2012-04-24/");
+        Client client = akount.makeclient("paras121", "Demo@1234").Create();
 
-        Console.WriteLine(client.Properties.Sid);
+        Console.WriteLine(client.Properties.sid);
 
         //Gets list of all client
         List<Client> clientlist = akount.GetClientList();
         foreach (Client c in clientlist)
         {
-            Console.WriteLine(c.Properties.FriendlyName);
+            Console.WriteLine(c.Properties.friendly_name);
 
         }
 
         //Changes password of client
-        client.ChangePassword(akount.Properties.Sid, akount.Properties.authtoken, "Demo@123");
+        //  client.ChangePassword(akount.Properties.sid, akount.Properties.auth_token, "Demo@123");
 
 
         //Deletes client
-        client.Delete(akount.Properties.Sid, akount.Properties.authtoken);
+        //  client.Delete(akount.Properties.sid, akount.Properties.auth_token);
 
-
+        Console.ReadLine();
     }
 }
 

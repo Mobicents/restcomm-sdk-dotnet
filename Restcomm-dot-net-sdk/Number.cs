@@ -23,6 +23,8 @@ using System;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
 {//
@@ -32,9 +34,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public NumberFilter SearchPhoneNumbers(string IsoCountryCode)
         {
 
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/AvailablePhoneNumbers/" + IsoCountryCode + "/Local.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/AvailablePhoneNumbers/" + IsoCountryCode + "/Local.json");
 
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             RestRequest req = new RestRequest(Method.GET);//cant figure out correct method for it . get and post wont work
             return new NumberFilter(client, req);
 
@@ -64,26 +66,16 @@ namespace org.restcomm.connect.sdk.dotnet
             IRestResponse res = Client.Execute(Request);
           
             var content = res.Content;
-           
-            List<string> friendlyname = content.GetPropertiesJson("friendlyName");
-            if (friendlyname != null)
+        
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+          var  Propertieslist = JsonConvert.DeserializeObject<List<numberProperties>>(content);
+          
+            List<PhoneNumber> phonenumberlist = new List<PhoneNumber>();
+                foreach(numberProperties property in Propertieslist)
             {
-
-                List<string> Phonenumbers = content.GetPropertiesJson("phoneNumber");
-                List<string> IsoCountry = content.GetPropertiesJson("isoCountry");
-                List<PhoneNumber> numberlist = new List<PhoneNumber>();
-
-                int j = 0;
-                foreach (string s in friendlyname)
-                {
-
-                    numberlist.Add(new PhoneNumber(friendlyname[j], Phonenumbers[j], IsoCountry[j]));
-                    j++;
-                }
-                return numberlist;
+                phonenumberlist.Add(new PhoneNumber(property));
             }
-            else
-                return null;
+            return phonenumberlist;
 
         }
 
@@ -98,15 +90,10 @@ namespace org.restcomm.connect.sdk.dotnet
 
         public numberProperties Properties;
 
-        public PhoneNumber(string friendlyname, string phoneNumber, string isoCountry)
+  
+        public PhoneNumber(numberProperties properties)
         {
-
-            Properties.FriendlyName = friendlyname;
-            Properties.Number = phoneNumber;
-            Properties.IsoCountry = isoCountry;
-
-
-
+            Properties = properties;
         }
 
     }

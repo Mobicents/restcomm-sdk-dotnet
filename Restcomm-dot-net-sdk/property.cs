@@ -30,74 +30,78 @@ namespace org.restcomm.connect.sdk.dotnet
     }
     public struct accountProperties
     {
-        public string Sid { get; set; }
-        public string friendlyname { get; set; }
+        public string sid { get; set; }
+        public string friendly_name { get; set; }
         public string status { get; set; }
-        public string dateupdated { get; set; }
-        public string datecreated { get; set; }
-        public string authtoken { get; set; }
+        public string date_updated { get; set; }
+        public string date_created { get; set; }
+        public string auth_token { get; set; }
         public string uri { get; set; }
     }
     public struct callProperties
     {
 
-        public string Sid { get; set; }
-        public string ParentCallSid { get; set; }
-        public string DateCreated { get; set; }
-        public string DateUpdated { get; set; }
-        public string To { get; set; }
-        public string From { get; set; }
-        public string PhoneNumberSid { get; set; }
-        public string Status { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string Duration { get; set; }
-        public string Price { get; set; }
-        public string Direction { get; set; }
-        public string AnsweredBy { get; set; }
-        public string ApiVersion { get; set; }
-        public string ForwardFrom { get; set; }
-        public string CallerName { get; set; }
-        public string Uri { get; set; }
+        public string sid { get; set; }
+        public string parent_call_sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string to { get; set; }
+        public string from { get; set; }
+        public string phone_number_sid { get; set; }
+        public string status { get; set; }
+        public string start_time { get; set; }
+        public string end_time { get; set; }
+        public string duratiom { get; set; }
+        public string price { get; set; }
+        public string direction { get; set; }
+        public string answered_by { get; set; }
+        public string api_version { get; set; }
+        public string forward_from { get; set; }
+        public string caller_name { get; set; }
+        public string uri { get; set; }
 
     }
     public struct applicationProperties
     {
-        public String Sid { get; set; }
-        public String AccountSid { get; set; }
-        public String FriendlyName { get; set; }
-        public String DateUpdated { get; set; }
-        public String DateCreated { get; set; }
-        public String APIversion { get; set; }
-        public String Kind { get; set; }
-        public String authtoken { get; set; }
+        public string sid { get; set; }
+        public String account_sid { get; set; }
+        public String friendly_Name { get; set; }
+        public String date_updated { get; set; }
+        public String date_created { get; set; }
+        public String api_version { get; set; }
+        public String kind { get; set; }
+        public String auth_token { get; set; }
 
     }
+   
     public struct numberProperties
     {
 
-        public string FriendlyName { get; set; }
-        public string Number { get; set; }
-        public string IsoCountry { get; set; }
+        public string friendlyName { get; set; }
+        public string phoneNumber { get; set; }
+        public string isoCountry { get; set; }
+        public string cost { get; set; }
+        public string voiceCapable { get; set; }
+        public string smsCapable { get; set; }
 
     }
-    public struct clientProperties
+public struct clientProperties
     {
-        public string Sid { get; set; }
-        public string DateCreated { get; set; }
-        public string DateUpdated { get; set; }
-        public string FriendlyName { get; set; }
-        public string AccountSid { get; set; }
-        public string ApiVersion { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Status { get; set; }
-        public string VoiceUrl { get; set; }
-        public string VoiceMethod { get; set; }
-        public string VoiceFallbackUrl { get; set; }
-        public string VoiceFallbackMethod { get; set; }
-        public string VoiceApplication { get; set; }
-        public string Uri { get; set; }
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string friendly_name { get; set; }
+        public string account_sid { get; set; }
+        public string api_version { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public string status { get; set; }
+        public string voice_url { get; set; }
+        public string voice_method { get; set; }
+        public string voice_fallback_url { get; set; }
+        public string voice_fallback_method { get; set; }
+        public string voice_application { get; set; }
+        public string uri { get; set; }
 
     }
     public struct gatewayproperties

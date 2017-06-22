@@ -29,9 +29,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public Email SendEmail(string From, string To, string Body, string Subject)
         {
 
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.Sid + "/Email" + "/Messages.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Email" + "/Messages.json");
             RestRequest request = new RestRequest(Method.POST);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Sid, Properties.authtoken);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             request.AddParameter("From", From);
             request.AddParameter("To", To);
             request.AddParameter("Body", Body);
