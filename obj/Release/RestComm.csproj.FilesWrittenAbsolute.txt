@@ -1,0 +1,6 @@
+/home/hannibal/Documents/restcomm-sdk-dotnet/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hannibal/Documents/restcomm-sdk-dotnet/bin/Release/RestComm.dll.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/bin/Release/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/obj/Release/RestComm.dll
+/home/hannibal/Documents/restcomm-sdk-dotnet/obj/Release/RestComm.dll.mdb
+/home/hannibal/Documents/restcomm-sdk-dotnet/bin/Release/RestSharp.dll
