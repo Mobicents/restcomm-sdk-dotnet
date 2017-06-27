@@ -1,13 +1,18 @@
 ﻿<Properties StartupItem="RestComm.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="property.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AccountExample/Program.cs">
     <Files>
-      <File FileName="RestComm/AccountManager.cs" Line="18" Column="29" />
-      <File FileName="RestComm/Call.cs" Line="11" Column="69" />
-      <File FileName="RestComm/xmloperations.cs" Line="55" Column="9" />
-      <File FileName="RestComm/NumberList.cs" Line="45" Column="14" />
-      <File FileName="Client.cs" Line="8" Column="2" />
-      <File FileName="property.cs" Line="28" Column="3" />
+      <File FileName="src/AccountManager.cs" Line="1" Column="1" />
+      <File FileName="src/Call.cs" Line="1" Column="1" />
+      <File FileName="src/xmloperations.cs" Line="52" Column="1" />
+      <File FileName="src/property.cs" Line="1" Column="1" />
+      <File FileName="src/NumberList.cs" Line="1" Column="1" />
+      <File FileName="src/Gateway.cs" Line="1" Column="1" />
+      <File FileName="src/ApplicationManager.cs" Line="1" Column="1" />
+      <File FileName="src/Email.cs" Line="1" Column="1" />
+      <File FileName="src/Client.cs" Line="1" Column="1" />
+      <File FileName="Test/Test.cs" Line="1" Column="1" />
+      <File FileName="AccountExample/Program.cs" Line="9" Column="73" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
