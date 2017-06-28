@@ -115,7 +115,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Restcomm-dot-net-sdk\Restcomm-dot-net-sdk.csproj">
+    <ProjectReference Include="..\src\Restcomm-dot-net-sdk.csproj">
       <Project>{812ee6ab-b6df-4f94-a9a5-2a17930bf53a}</Project>
       <Name>Restcomm-dot-net-sdk</Name>
     </ProjectReference>
