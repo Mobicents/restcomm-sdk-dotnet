@@ -107,7 +107,7 @@ NOTE: Choose a strong password or else server won't accept the request.
 Method CreateSubAccount  will create a new subaccount.It takes New Friendly Name ,Email Address and password as argument .
 [source,C#]
 ----------------------
-SubAccount subaccount=akount.CreateSubAccount("DemoAccounts","demoaccounts@restcomm.com","Demo@123");
+SubAccount subaccount=akount.CreateSubAccount("NewAccounts","newaccounts@restcomm.com","NewPassword@123");
 ----------------------
 NOTE: Sub Account is subclass of Account so it will contain all the methods of Account.
 
@@ -396,7 +396,7 @@ An Client instance resource represents a user agent registered with RestComm.
 ^^^^^^^^^^^^^^^^^^
 [source,C#]
 ---------------
- Client client = akount.makeclient("paras121", "Password@1234").Create();
+ Client client = akount.makeclient("NewClient", "Password@1234").Create();
 ---------------
 
 *Client List*
