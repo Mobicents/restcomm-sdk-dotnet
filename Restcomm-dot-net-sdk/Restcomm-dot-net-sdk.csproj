@@ -58,6 +58,7 @@
     <Compile Include="Email.cs" />
     <Compile Include="Gateway.cs" />
     <Compile Include="JsonOperations.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="property.cs" />

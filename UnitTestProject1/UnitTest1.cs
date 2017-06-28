@@ -54,6 +54,8 @@ namespace Test
         string appresponse = "{\n  \"sid\": \"dummyapp\",\n  \"date_created\": \"Mon, 19 Jun 2017 20:45:35 +0000\",\n  \"date_updated\": \"Mon, 19 Jun 2017 20:45:35 +0000\",\n  \"friendly_name\": \"testappps\",\n  \"account_sid\": \"AC43b4d94a9b2\",\n  \"api_version\": \"2012-04-24\",\n  \"voice_caller_id_lookup\": false,\n  \"uri\": \"/2012-04-24/Accounts/AC43b4d94a9b2/Applications/APdb12dfe7961d4a1b8e6b.json\"\n}";
         string emailresponse = "{\n  \"date_sent\": \"2017-06-19T21:04:56.040Z\",\n  \"account_sid\": \"AC43b4d94a9b2\",\n  \"from\": \"demo123@localhost.com\",\n  \"to\": \"demo345@localhost.com\",\n  \"body\": \"This is a test email\",\n  \"subject\": \"Test\"\n}";
         string numberresponse = "[{ \"friendlyName\": \"+12034848530\", \"phoneNumber\": \"12034848530\", \"isoCountry\": \"US\", \"cost\": \"0.67\", \"voiceCapable\": \"true\", \"smsCapable\": \"true\" }]";
+        string notificationresponse = "[\n    {\n      \"sid\": \"NOa6b821987c1e47b4b91d2678fdndjdn\",\n      \"date_created\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"account_sid\": \"AC43b4d94a9b2\",\n      \"api_version\": \"2012-04-24\",\n      \"log\": 0,\n      \"error_code\": 11001,\n      \"more_info\": \"/restcomm/errors/11001.html\",\n      \"message_text\": \"Cannot Connect to Client: bob : Make sure the Client exist or is registered with Restcomm\",\n      \"message_date\": \"2017-05-17T11:09:40.000Z\",\n      \"request_url\": \"\",\n      \"request_method\": \"\",\n      \"request_variables\": \"\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c/Notifications/NOa6b82198.json\"\n    }\n   ]";
+
         [TestInitialize]
         public void Login()
         {
@@ -194,6 +196,18 @@ namespace Test
             MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/AvailablePhoneNumbers/US/Local.json", numberresponse);
            var numberlist= akount.SearchPhoneNumbers("US").Search();
             Assert.AreEqual("0.67", numberlist[0].Properties.cost); 
+        }
+        [TestMethod]
+        public void NotificationTest()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Notifications.json",notificationresponse);
+           
+            var parameter = new Dictionary<string, string>();
+          
+            List<Notification> NotificationList = akount.GetNotificationList(parameter);
+            Console.WriteLine(NotificationList[0].Properties.log);
+            Assert.AreEqual(NotificationList[0].Properties.log, "0");
+           
         }
     }
 }

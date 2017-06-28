@@ -121,6 +121,26 @@ public struct clientProperties
 
 
     }
+    public struct NotificationProperties
+    {
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string account_sid { get; set; }
+        public string call_sid { get; set; }
+        public string api_version { get; set; }
+        public string log { get; set; }
+        public string error_code { get; set; }
+        public string more_info { get; set; }
+        public string message_text { get; set; }
+        public string message_date { get; set; }
+        public string request_url { get; set; }
+        public string request_method { get; set; }
+        public string request_variables { get; set; }
+        public string response_body { get; set; }
+        public string response_headers { get; set; }
+        public string uri { get; set; }
+    }
 
 }
 

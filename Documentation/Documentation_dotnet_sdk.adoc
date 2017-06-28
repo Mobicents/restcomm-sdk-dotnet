@@ -464,12 +464,12 @@ This class is returned by method SearchPhoneNumbers[Account].
 *Example*
 +++++++++
 
- [source,C#]
- ----------------
+[source,C#]
+----------------
   var phonenumbersearch=akount.SearchPhoneNumbers("US");
   phonenumbersearch.AddSearchParameter("AreaCode","911");
  List<PhoneNumber> phonenumberlist= phonenumbersearch.Search();
- ----------------
+----------------
 
 
 

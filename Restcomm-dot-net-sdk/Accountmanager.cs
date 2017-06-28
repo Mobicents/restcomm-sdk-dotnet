@@ -47,12 +47,11 @@ namespace org.restcomm.connect.sdk.dotnet
 
             RestClient client = new RestClient(baseurl + "Accounts.json/" + sid);
             RestRequest login = new RestRequest(Method.GET);
-
+           
             client.Authenticator = new HttpBasicAuthenticator(sid, Tokenno);
-
+           
             IRestResponse response = client.Execute(login);
             var content = response.Content;
-           
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
             Properties = JsonConvert.DeserializeObject<accountProperties>(content);
         
