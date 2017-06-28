@@ -20,7 +20,7 @@
 //  */
 //
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ using org.restcomm.connect.sdk.dotnet;
 using System.Threading;
 using System.Text;
 using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 
 
@@ -37,7 +38,7 @@ namespace Test
  //First Line : Account Sid
  //Second Line :Authentication Token
  //Third Line :Login Password
-    [TestClass]
+    [TestFixture]
     public class NUnitTestClass
     {
 #pragma warning disable
@@ -56,7 +57,7 @@ namespace Test
         string numberresponse = "[{ \"friendlyName\": \"+12034848530\", \"phoneNumber\": \"12034848530\", \"isoCountry\": \"US\", \"cost\": \"0.67\", \"voiceCapable\": \"true\", \"smsCapable\": \"true\" }]";
         string notificationresponse = "[\n    {\n      \"sid\": \"NOa6b821987c1e47b4b91d2678fdndjdn\",\n      \"date_created\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"account_sid\": \"AC43b4d94a9b2\",\n      \"api_version\": \"2012-04-24\",\n      \"log\": 0,\n      \"error_code\": 11001,\n      \"more_info\": \"/restcomm/errors/11001.html\",\n      \"message_text\": \"Cannot Connect to Client: bob : Make sure the Client exist or is registered with Restcomm\",\n      \"message_date\": \"2017-05-17T11:09:40.000Z\",\n      \"request_url\": \"\",\n      \"request_method\": \"\",\n      \"request_variables\": \"\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c/Notifications/NOa6b82198.json\"\n    }\n   ]";
 
-        [TestInitialize]
+        [SetUp]
         public void Login()
         {
             //MockServer.AddGetRequest
@@ -71,13 +72,13 @@ namespace Test
 
             
         }
-        [TestMethod]
+        [Test]
         public void AccountLogin()
         {
             Assert.AreEqual( "test", akount.Properties.sid);
 
         }
-        [TestMethod]
+        [Test]
         public void ChangePassword()
         {
 
@@ -93,7 +94,7 @@ namespace Test
             
         }
 
-        	[TestMethod]
+        	[Test]
             public void  CreateSubAccount()
         {
             var paradictionary = new Dictionary<string, string>();
@@ -109,7 +110,7 @@ namespace Test
             }
 
           
-            [TestMethod]
+            [Test]
             public void SubAccountListing(){
             string subaccountlistresponse = "[" + loginresponse + "]";
             MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts.json", subaccountlistresponse);
@@ -117,7 +118,7 @@ namespace Test
                     Assert.AreEqual (subaccountlist.Count, 1);
                 }
         
-        [TestMethod]
+        [Test]
         public void MakeCall()
         {
         
@@ -130,7 +131,7 @@ namespace Test
            Call calldetail= akount.MakeCall("Client1", "Client2", "site.com").call();
             Assert.AreEqual("testcall", calldetail.Properties.sid);
         }
-        [TestMethod]
+        [Test]
         public void GetCallDetail()
         {
             string calldetailresponse = "[" + callresponse + "]";
@@ -138,7 +139,7 @@ namespace Test
            List<Call> calllist= akount.GetCallDetail().Search();
             Assert.AreEqual(1, calllist.Count);
         }
-        [TestMethod]
+        [Test]
         public void CreateClient()
         {
             var paradictionary = new Dictionary<string, string>();
@@ -148,7 +149,7 @@ namespace Test
            Client c= akount.makeclient("username", "password").Create();
             Assert.AreEqual("dummyclient", c.Properties.sid);
         }
-        [TestMethod]
+        [Test]
         public void ClientList()
         {
         string    clientlistresponse = "["+clientresponse+ "]";
@@ -156,7 +157,7 @@ namespace Test
             List<Client> clientlist = akount.GetClientList();
             Assert.AreEqual(1, clientlist.Count);
         }
-        [TestMethod]
+        [Test]
         public void makeapp()
         {
             var paradictionary = new Dictionary<string, string>();
@@ -167,7 +168,7 @@ namespace Test
             Assert.AreEqual("dummyapp", a.Properties.sid);
 
         }
-        [TestMethod]
+        [Test]
         public void applist()
         {
             string applistresponse = "[" + appresponse + "]";
@@ -176,7 +177,7 @@ namespace Test
             List<Application> a = akount.GetApplicationList();
             Assert.AreEqual(1, a.Count);
         }
-        [TestMethod]
+        [Test]
         public void SendMail()
         {
             var paradictionary = new Dictionary<string, string>();
@@ -189,7 +190,7 @@ namespace Test
             akount.SendEmail("emailid1", "emailid2", "emailbody","Subject").Send();
             //will throw a error if something goes wrong
         }
-        [TestMethod]
+        [Test]
         public void NumberSearch()
         {
             numberresponse=numberresponse.Replace((char)39,'"');
@@ -197,7 +198,7 @@ namespace Test
            var numberlist= akount.SearchPhoneNumbers("US").Search();
             Assert.AreEqual("0.67", numberlist[0].Properties.cost); 
         }
-        [TestMethod]
+        [Test]
         public void NotificationTest()
         {
             MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Notifications.json",notificationresponse);
