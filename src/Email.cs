@@ -25,7 +25,14 @@ using RestSharp.Authenticators;
 namespace org.restcomm.connect.sdk.dotnet
 {
     public partial class Account
-    {
+    {   /// <summary>
+        /// to send a new email 
+        /// </summary>
+        /// <param name="From">The Email address that initiated the message.</param>
+        /// <param name="To">The Email address of the recipient.</param>
+        /// <param name="Body">The text body of the email message.</param>
+        /// <param name="Subject">The subject of the email message.</param>
+        /// <returns>returns a class Email </returns>
         public Email SendEmail(string From, string To, string Body, string Subject)
         {
 
@@ -53,14 +60,25 @@ namespace org.restcomm.connect.sdk.dotnet
             this.client = client;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CC">The Carbon Copy(Cc). (The list of CCed recipients is visible to all other recipients of the message.)</param>
         public void AddCC(string CC)
         {
             request.AddParameter("CC", CC);
         }
+        /// <summary>
+        /// The Blind Carbon Copy feature (Bcc).  (Hide addresses when sending an Email to various recipients)
+        /// </summary>
+        /// <param name="BCC"></param>
         public void AddBCC(string BCC)
         {
             request.AddParameter("BCC", BCC);
         }
+        /// <summary>
+        /// executes the request to send email
+        /// </summary>
         public void Send()
         {
             IRestResponse response = client.Execute(request);

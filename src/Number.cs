@@ -28,10 +28,14 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
-{//
+{
     public partial class Account
     {
-
+        /// <summary>
+        /// use this to search available phone number
+        /// </summary>
+        /// <param name="IsoCountryCode">ISo country code eg. SOM for somalia </param>
+        /// <returns> numberfilter :contains method to apply searh filter and execute search request</returns>
         public NumberFilter SearchPhoneNumbers(string IsoCountryCode)
         {
 
@@ -45,6 +49,9 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
     }
+    /// <summary>
+    /// contains method to apply searh filter and execute search request
+    /// </summary>
     public class NumberFilter
     {
         private RestClient Client;
@@ -56,11 +63,19 @@ namespace org.restcomm.connect.sdk.dotnet
             Client = client;
             Request = request;
         }
+        /// <summary>
+        /// Adds search filter to your request
+        /// </summary>
+        /// <param name="ParameterName">name of the search filter eg. "AreaCode"</param>
+        /// <param name="ParameterValue">value of parameter .</param>
         public void AddSearchParameter(string ParameterName, string ParameterValue)
         {
             Request.AddQueryParameter(ParameterName, ParameterValue);
         }
-       
+       /// <summary>
+       /// executes the request 
+       /// </summary>
+       /// <returns>search result</returns>
         public List<PhoneNumber> Search()
         {
 
@@ -87,6 +102,9 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
     }
+    /// <summary>
+    /// stores phone number info such as sid, friendly name,price
+    /// </summary>
     public class PhoneNumber
     {
 

@@ -30,19 +30,30 @@ using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
-
+    /// <summary>
+    /// Contains account info and methods .
+    /// </summary>
     public partial class Account
     {
-
+        /// <summary>
+        /// contains all properties of Account
+        /// </summary>
         public accountProperties Properties;
 
-
+        
         public static string baseurl;
 
         //constructor method to instantiate account 
-
+        /// <summary>
+        /// Instantiate Account with given sid, and auth token.
+        /// </summary>
+        /// <param name="sid">enter sid or email id </param>
+        /// <param name="Tokenno">enter Token no or Password</param>
+        /// <param name="baseurl">use https://cloud.restcomm.com/restcomm/2012-04-24/ if you are using restcomm cloud </param>
+        /// 
         public Account(string sid, string Tokenno, string baseurl)
         {
+            sid=  sid.Replace('@', '%');
             Account.baseurl = baseurl;
 
             RestClient client = new RestClient(baseurl + "Accounts.json/" + sid);
@@ -57,7 +68,10 @@ namespace org.restcomm.connect.sdk.dotnet
         
 
         }
-
+        /// <summary>
+        /// Changes password of the account associated with this class 
+        /// </summary>
+        /// <param name="NewPassword">new password</param>
         public void ChangePassword(string NewPassword)
         {
 
@@ -78,7 +92,13 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
         }
-
+        /// <summary>
+        /// Creates a new sub account.
+        /// </summary>
+        /// <param name="FriendlyName">Friendly Name for new sub account</param>
+        /// <param name="emailid"> email id to be registered with new sub account</param>
+        /// <param name="password">password for subaccount</param>
+        /// <returns></returns>
         public SubAccount CreateSubAccount(string FriendlyName, string emailid, string password)
         {
 
@@ -96,7 +116,10 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
         }
-
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns>returns a list of subaccount associated with this account</returns>
         public List<SubAccount> GetSubAccountList()
         {
 
@@ -131,22 +154,27 @@ namespace org.restcomm.connect.sdk.dotnet
     }
 
 
-
+/// <summary>
+/// This is subclass of Class Account . 
+/// </summary>
     public class SubAccount : Account
     {
         public SubAccount(string Sid, string Tokenno, string baseurl) : base(Sid, Tokenno, baseurl = Account.baseurl)
         {
 
         }
-
-        public string CloseSubAccount()
+        /// <summary>
+        /// CLoses the account 
+        /// </summary>
+        /// <returns></returns>
+        public void CloseSubAccount()
         {
             RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.sid);
             RestRequest login = new RestRequest(Method.PUT);
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             login.AddParameter("Status", "closed");
             IRestResponse response = client.Execute(login);
-            return response.Content;
+         
         }
 
     }

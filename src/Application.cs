@@ -31,6 +31,10 @@ namespace org.restcomm.connect.sdk.dotnet
     //this class contains all Acccount info and methods .
     public partial class Account
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>returns a list of application associated with this account</returns>
         public List<Application> GetApplicationList()
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Applications.json");
@@ -60,7 +64,15 @@ namespace org.restcomm.connect.sdk.dotnet
 
         }
 
-
+        /// <summary>
+        /// Creates a new application .
+        /// </summary>
+        /// <param name="FriendlyName">Friendly Name of the application</param>
+        /// <param name="ApiVersion">Api Version(optional)</param>
+        /// <param name="HasVoiceCallerIdLookup">If true look up the caller’s caller-ID name from the CNAM database.  </param>
+        /// <param name="RcmlUrl">The HTTP address that RestComm will use to get the RCML of this Application.</param>
+        /// <param name="Kind">The kind of this Application. (Supported values: voice, sms or ussd)</param>
+        /// <returns></returns>
         public Application CreateApplication(string FriendlyName, string ApiVersion = null, bool HasVoiceCallerIdLookup = false, string RcmlUrl = null, String Kind = null)
         {
 
@@ -89,10 +101,22 @@ namespace org.restcomm.connect.sdk.dotnet
 
     }
 
+    /// <summary>
+    /// Application Class
+    /// </summary>
     public class Application
     {
         string auth_token;
+        /// <summary>
+        /// This struct stores all the info related to the given application
+        /// </summary>
         public applicationProperties Properties;
+        /// <summary>
+        /// Stores application info in the class
+        /// </summary>
+        /// <param name="accountsid">sid of account associated with this application</param>
+        /// <param name="tokenno">authentication token of the account </param>
+        /// <param name="ApplicationSid">Sid of this application</param>
         public Application(String accountsid, String tokenno, string ApplicationSid)
         {
             auth_token = tokenno;
@@ -108,6 +132,10 @@ namespace org.restcomm.connect.sdk.dotnet
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
             Properties = JsonConvert.DeserializeObject<applicationProperties>(content);
         }
+        /// <summary>
+        /// Changes the old parameter value with the given value
+        /// </summary>
+        /// <param name="parameters">A dictionary with key=parameter type ,value=parameter value</param>
         public void Update(Dictionary<string,string> parameters)
         {
             RestClient client = new RestClient(Account.baseurl + "Accounts/" + Properties.account_sid + "/Applications/" + Properties.sid +Properties.sid+ ".json");
@@ -123,6 +151,9 @@ namespace org.restcomm.connect.sdk.dotnet
             Properties = JsonConvert.DeserializeObject<applicationProperties>(content);
 
         }
+        /// <summary>
+        /// Deletes Application 
+        /// </summary>
         public void Delete()
         {
 
@@ -133,7 +164,7 @@ namespace org.restcomm.connect.sdk.dotnet
           
 
         }
-        //Update Application to be done
+       
 
     }
 

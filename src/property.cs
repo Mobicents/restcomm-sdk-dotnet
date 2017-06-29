@@ -28,6 +28,7 @@ namespace org.restcomm.connect.sdk.dotnet
         //public	account Account;
 
     }
+   
     public struct accountProperties
     {
         public string sid { get; set; }

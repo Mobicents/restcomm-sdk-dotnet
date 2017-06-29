@@ -32,6 +32,13 @@ namespace org.restcomm.connect.sdk.dotnet
     
     public partial class Account
     {
+        /// <summary>
+        /// use this method to intiate call
+        /// </summary>
+        /// <param name="From">The phone number or identifier that originated this call.</param>
+        /// <param name="To">The phone number or identifier that will be the recipient of this call.</param>
+        /// <param name="Url">The URI for this account, relative to https://localhost:port/restcomm.</param>
+        /// <returns>a class makecall to add parameter and execute the request </returns>
         public makecall MakeCall(string From, string To, string Url)
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Calls.json");
@@ -44,6 +51,10 @@ namespace org.restcomm.connect.sdk.dotnet
             return new makecall(client, makecall);
 
         }
+        /// <summary>
+        /// Returns list of calls
+        /// </summary>
+        /// <returns>CallFilter which contain method for filtering searh result and finally executing request</returns>
         public CallFilter GetCallDetail()
         {
 
@@ -55,6 +66,9 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
     }
+    /// <summary>
+    /// CallFilter contains method for filtering out searh result and finally executing request
+    /// </summary>
     public class CallFilter
     {
         RestClient client;
@@ -63,6 +77,12 @@ namespace org.restcomm.connect.sdk.dotnet
         string TokenNo;
         List<string> parametername = new List<string>();
         List<string> parametervalue = new List<string>();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="Sid"></param>
+        /// <param name="TokenNo"></param>
         public CallFilter(RestRequest request, string Sid, string TokenNo)
         {
 
@@ -70,11 +90,20 @@ namespace org.restcomm.connect.sdk.dotnet
             this.Sid = Sid;
             this.TokenNo = TokenNo;
         }
+        /// <summary>
+        /// add parameter like AreaCode,COntains
+        /// </summary>
+        /// <param name="ParameterName">name of the parameter eg. "Status"</param>
+        /// <param name="ParameterValue">parameter value eg. "ringing" for parameter "Status" </param>
         public void AddSearchFilter(string ParameterName, string ParameterValue)
         {
             parametername.Add(ParameterName);
             parametervalue.Add(ParameterValue);
         }
+        /// <summary>
+        /// Execute the searh request
+        /// </summary>
+        /// <returns>list of calls </returns>
         public List<Call> Search()
         {
             string clienturl = Account.baseurl + "Accounts/" + Sid + "/Calls.json";
@@ -127,12 +156,21 @@ namespace org.restcomm.connect.sdk.dotnet
                 Request = request;
 
             }
+        /// <summary>
+        /// adds parameter to the request
+        /// </summary>
+        /// <param name="ParameterName">Name of the parameter eg. "Timeout"</param>
+        /// <param name="ParameterValue">eg. for parameter name "Timeout" value "30" will end call in 30 seconds</param>
             public void AddParameter(string ParameterName, string ParameterValue)
             {
 
                 Request.AddParameter(ParameterName, ParameterValue);
 
             }
+        /// <summary>
+        /// Executes the call request
+        /// </summary>
+        /// <returns>Call </returns>
             public Call call()
             {
                 IRestResponse response = Client.Execute(Request);
@@ -143,7 +181,9 @@ namespace org.restcomm.connect.sdk.dotnet
             return newcall;
             }
         }
-
+    /// <summary>
+    /// Stores all info of the call with given sid
+    /// </summary>
         public class Call
         {
 
@@ -152,7 +192,12 @@ namespace org.restcomm.connect.sdk.dotnet
             {
                 Properties = properties;
             }
-       
+       /// <summary>
+       /// modifies live calls using given parameters
+       /// </summary>
+       /// <param name="parameter">a dictionary with key:parameter name and value:parameter value</param>
+       /// <param name="AccountSid">Sid of the Account associated with the call</param>
+       /// <param name="AuthToken">authentication token of the account associated with the call</param>
             public void ModifyCall(Dictionary<string,string> parameter, String AccountSid, String AuthToken)
             {
            
@@ -171,6 +216,7 @@ namespace org.restcomm.connect.sdk.dotnet
 
 
         }
+    
         public struct CallParameters
         {
             public string Method { get { return "Method"; } }

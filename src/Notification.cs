@@ -12,6 +12,11 @@ namespace org.restcomm.connect.sdk.dotnet
 {
     partial class Account
     {
+        /// <summary>
+        /// returns list of all notification
+        /// </summary>
+        /// <param name="parameters">use this dictionary to add multiple searh filters</param>
+        /// <returns>list of all notification</returns>
      public List<Notification>   GetNotificationList(Dictionary<string ,string> parameters=null)
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid +"/Notifications.json");
@@ -38,7 +43,9 @@ namespace org.restcomm.connect.sdk.dotnet
         
     }
    public class Notification
-    {
+    {   /// <summary>
+    /// stores all info of the notification
+    /// </summary>
         public NotificationProperties Properties;
         public Notification(NotificationProperties Properties)
         {

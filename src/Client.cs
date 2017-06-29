@@ -30,7 +30,10 @@ namespace org.restcomm.connect.sdk.dotnet
 {
 
     public partial class Account
-    {
+    {/// <summary>
+    /// Returns a list of clients associated with the account
+    /// </summary>
+    /// <returns> client list</returns>
         public List<Client> GetClientList()
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Clients.json");
@@ -49,6 +52,12 @@ namespace org.restcomm.connect.sdk.dotnet
             return clientslist;
 
         }
+        /// <summary>
+        /// Creates a new client
+        /// </summary>
+        /// <param name="Login">Username of new client</param>
+        /// <param name="Password">password for new client</param>
+        /// <returns>returns a class makeclient</returns>
         public MakeClient makeclient(string Login, string Password)
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Clients.json");
@@ -62,15 +71,28 @@ namespace org.restcomm.connect.sdk.dotnet
         }
 
     }
+    /// <summary>
+    /// contains methods and info related to the given client
+    /// </summary>
     public class Client
     {
-
+        /// <summary>
+        /// stores client info
+        /// </summary>
         public clientProperties Properties;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="properties">struct which contains info of the client</param>
         public Client(clientProperties properties)
         {
             Properties = properties;
         }
-    
+    /// <summary>
+    ///delets the client info 
+    /// </summary>
+    /// <param name="sid">Sid of the parent account</param>
+    /// <param name="authtoken">authentication token of parent account</param>
         public void Delete(String sid, string authtoken)
         {
             RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.sid+".json");
@@ -79,6 +101,12 @@ namespace org.restcomm.connect.sdk.dotnet
            IRestResponse response= client.Execute(request);
            
         }
+        /// <summary>
+        /// Creates a new password for client
+        /// </summary>
+        /// <param name="sid">Sid of the parent account</param>
+        /// <param name="authtoken">authentication token of the parent account</param>
+        /// <param name="NewPassword">new password</param>
         public void ChangePassword(String sid, string authtoken, string NewPassword)
         {
             RestClient client = new RestClient(Account.baseurl + "Accounts/" + sid + "/Clients/" + Properties.sid+".json");
@@ -90,6 +118,9 @@ namespace org.restcomm.connect.sdk.dotnet
 
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public class MakeClient
     {
         RestClient client;
@@ -99,10 +130,19 @@ namespace org.restcomm.connect.sdk.dotnet
             this.client = client;
             this.request = request;
         }
+        /// <summary>
+        /// add parameter to the the request
+        /// </summary>
+        /// <param name="ParameterName">eg "Status" </param>
+        /// <param name="ParameterValue">for parameter name "status" value "0" for disabled or value "1" for enabled</param>
         public void AddParameter(string ParameterName, string ParameterValue)
         {   
             request.AddParameter(ParameterName, ParameterValue);
         }
+        /// <summary>
+        /// executes the request for creating client 
+        /// </summary>
+        /// <returns></returns>
         public Client Create()
         {
 
