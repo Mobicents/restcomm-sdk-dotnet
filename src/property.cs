@@ -23,12 +23,9 @@ using System;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
-    public struct classproperty
-    {
-        //public	account Account;
-
-    }
-   
+   /// <summary>
+   /// contains field for each property of account
+   /// </summary>
     public struct accountProperties
     {
         public string sid { get; set; }
@@ -39,6 +36,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public string auth_token { get; set; }
         public string uri { get; set; }
     }
+    /// <summary>
+    /// contains field for each property of Call
+    /// </summary>
     public struct callProperties
     {
 
@@ -62,6 +62,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public string uri { get; set; }
 
     }
+    /// <summary>
+    /// contains field for each property of application
+    /// </summary>
     public struct applicationProperties
     {
         public string sid { get; set; }
@@ -76,7 +79,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public string uri { get; set; }
 
     }
-   
+    /// <summary>
+    /// contains field for each property of number
+    /// </summary>
     public struct numberProperties
     {
 
@@ -88,7 +93,10 @@ namespace org.restcomm.connect.sdk.dotnet
         public string smsCapable { get; set; }
 
     }
-public struct clientProperties
+    /// <summary>
+    /// contains field for each property of client
+    /// </summary>
+    public struct clientProperties
     {
         public string sid { get; set; }
         public string date_created { get; set; }
@@ -107,6 +115,9 @@ public struct clientProperties
         public string uri { get; set; }
 
     }
+    /// <summary>
+    /// contains field for each property of gateway
+    /// </summary>
     public struct gatewayproperties
     {
         public string Sid { get; set; }
@@ -122,6 +133,9 @@ public struct clientProperties
 
 
     }
+    /// <summary>
+    /// contains field for each property of Notification
+    /// </summary>
     public struct NotificationProperties
     {
         public string sid { get; set; }
@@ -140,6 +154,26 @@ public struct clientProperties
         public string request_variables { get; set; }
         public string response_body { get; set; }
         public string response_headers { get; set; }
+        public string uri { get; set; }
+    }
+    /// <summary>
+    /// contains field for each property of SMS
+    /// </summary>
+    public struct SMSProperties
+    {
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string date_sent { get; set; }
+        public string account_sid { get; set; }
+        public string from { get; set; }
+        public string to { get; set; }
+        public string body { get; set; }
+        public string status { get; set; }
+        public string direction { get; set; }
+        public string price { get; set; }
+        public string price_unit { get; set; }
+        public string api_version { get; set; }
         public string uri { get; set; }
     }
 

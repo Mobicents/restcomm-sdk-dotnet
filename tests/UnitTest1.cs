@@ -56,7 +56,7 @@ namespace Test
         string emailresponse = "{\n  \"date_sent\": \"2017-06-19T21:04:56.040Z\",\n  \"account_sid\": \"AC43b4d94a9b2\",\n  \"from\": \"demo123@localhost.com\",\n  \"to\": \"demo345@localhost.com\",\n  \"body\": \"This is a test email\",\n  \"subject\": \"Test\"\n}";
         string numberresponse = "[{ \"friendlyName\": \"+12034848530\", \"phoneNumber\": \"12034848530\", \"isoCountry\": \"US\", \"cost\": \"0.67\", \"voiceCapable\": \"true\", \"smsCapable\": \"true\" }]";
         string notificationresponse = "[\n    {\n      \"sid\": \"NOa6b821987c1e47b4b91d2678fdndjdn\",\n      \"date_created\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"account_sid\": \"AC43b4d94a9b2\",\n      \"api_version\": \"2012-04-24\",\n      \"log\": 0,\n      \"error_code\": 11001,\n      \"more_info\": \"/restcomm/errors/11001.html\",\n      \"message_text\": \"Cannot Connect to Client: bob : Make sure the Client exist or is registered with Restcomm\",\n      \"message_date\": \"2017-05-17T11:09:40.000Z\",\n      \"request_url\": \"\",\n      \"request_method\": \"\",\n      \"request_variables\": \"\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c/Notifications/NOa6b82198.json\"\n    }\n   ]";
-
+        string SMSresponse = "[\n    {\n      \"sid\": \"SMade2570e7f554578a\",\n      \"date_created\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"date_updated\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"account_sid\": \"AC13b4372c92\",\n      \"from\": \"+1654123987\",\n      \"to\": \"+1321654879\",\n      \"body\": \"This is a test message\",\n      \"status\": \"sending\",\n      \"direction\": \"outbound-api\",\n      \"price\": \"0\",\n      \"price_unit\": \"USD\",\n      \"api_version\": \"2012-04-24\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c92ed5c07d951cf842e2664ff/SMS/Messages/SMade2570e7f554578ac590311085f53e2.json\"\n    }]";
         [SetUp]
         public void Login()
         {
@@ -66,7 +66,7 @@ namespace Test
                 baseurl = MockServer.hostaddress + "restcomm/2012-04-24/";
                 MockServer.AddAuthentication(Sid, authtoken);
                 MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts.json/" + Sid, loginresponse);
-                Thread.Sleep(500);
+                Thread.Sleep(20);
           
                akount = new Account(Sid, authtoken, baseurl);
 
@@ -209,6 +209,27 @@ namespace Test
             Console.WriteLine(NotificationList[0].Properties.log);
             Assert.AreEqual(NotificationList[0].Properties.log, "0");
            
+        }
+        [Test]
+        public void SMSListingTest()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/SMS/Messages.json", SMSresponse);
+            var SMSlist = akount.GetSMSList().Search();
+            Assert.AreEqual(SMSlist[0].Properties.price, "0");
+            
+        }
+        [Test]
+        public void SendingSMSTest()
+        {
+            string newSMSresponse = SMSresponse.Split('[',']')[1];
+            var parameters= new Dictionary<string, string>();
+            parameters.Add("From", "From");
+            parameters.Add("To","To");
+            parameters.Add("Body", "Body");
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/SMS/Messages.json",parameters, newSMSresponse);
+            var newSMS = akount.SendSMS("From", "To", "Body").send();
+            Assert.AreEqual(newSMS.Properties.price, "0");
+
         }
     }
 }

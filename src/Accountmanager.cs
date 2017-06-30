@@ -168,11 +168,11 @@ namespace org.restcomm.connect.sdk.dotnet
         /// </summary>
         /// <returns></returns>
         public void CloseSubAccount()
-        {
+        {                                                               
             RestClient client = new RestClient(baseurl + "Accounts.json/" + Properties.sid);
             RestRequest login = new RestRequest(Method.PUT);
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
-            login.AddParameter("Status", "closed");
+            login.AddParameter("Status", "closed");                                     
             IRestResponse response = client.Execute(login);
          
         }

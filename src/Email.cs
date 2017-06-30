@@ -46,7 +46,9 @@ namespace org.restcomm.connect.sdk.dotnet
             return new Email(client, request);
         }
     }
-
+    /// <summary>
+    /// contains method to send mail and add cc/bcc
+    /// </summary>
     public class Email
     {
 
@@ -82,8 +84,6 @@ namespace org.restcomm.connect.sdk.dotnet
         public void Send()
         {
             IRestResponse response = client.Execute(request);
-
-         
             response.Content.GetPropertyJson("from");//will throw an error if email is not sent ie. xml response is not in proper format
         }
     }
