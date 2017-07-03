@@ -57,6 +57,7 @@ namespace Test
         string numberresponse = "[{ \"friendlyName\": \"+12034848530\", \"phoneNumber\": \"12034848530\", \"isoCountry\": \"US\", \"cost\": \"0.67\", \"voiceCapable\": \"true\", \"smsCapable\": \"true\" }]";
         string notificationresponse = "[\n    {\n      \"sid\": \"NOa6b821987c1e47b4b91d2678fdndjdn\",\n      \"date_created\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"account_sid\": \"AC43b4d94a9b2\",\n      \"api_version\": \"2012-04-24\",\n      \"log\": 0,\n      \"error_code\": 11001,\n      \"more_info\": \"/restcomm/errors/11001.html\",\n      \"message_text\": \"Cannot Connect to Client: bob : Make sure the Client exist or is registered with Restcomm\",\n      \"message_date\": \"2017-05-17T11:09:40.000Z\",\n      \"request_url\": \"\",\n      \"request_method\": \"\",\n      \"request_variables\": \"\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c/Notifications/NOa6b82198.json\"\n    }\n   ]";
         string SMSresponse = "[\n    {\n      \"sid\": \"SMade2570e7f554578a\",\n      \"date_created\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"date_updated\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"account_sid\": \"AC13b4372c92\",\n      \"from\": \"+1654123987\",\n      \"to\": \"+1321654879\",\n      \"body\": \"This is a test message\",\n      \"status\": \"sending\",\n      \"direction\": \"outbound-api\",\n      \"price\": \"0\",\n      \"price_unit\": \"USD\",\n      \"api_version\": \"2012-04-24\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c92ed5c07d951cf842e2664ff/SMS/Messages/SMade2570e7f554578ac590311085f53e2.json\"\n    }]";
+        string transcriptionResponse = " {\"page\":0,\"num_pages\":0,\"page_size\":50,\"total\":13,\"start\":\"0\",\"end\":\"13\",\"uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json\",\"first_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"previous_page_uri\":\"null\",\"next_page_uri\":\"null\",\"last_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"transcriptions\":\n    [\n        {\n            \"sid\": \"RF20000000000000000000000000000001\",\n            \"date_created\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"date_updated\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"account_sid\":\"ACae6e420f425248d6a26948c17a9e2acf\",\n            \"status\":\"completed\",\n            \"recording_sid\":\"CA5FB00000000000000000000000000002\",\n            \"duration\":\"14.70275\",\n            \"transcription_text\":\"Hello, Welcome to RestComm Connect\",\n            \"price\":\"0.0\",\n            \"uri\":\"/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions/NOb88ccff6c9e04f989de9415a555ad84d.json.json\"\n        }\n    ]\n}";
         [SetUp]
         public void Login()
         {
@@ -229,6 +230,14 @@ namespace Test
             MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/SMS/Messages.json",parameters, newSMSresponse);
             var newSMS = akount.SendSMS("From", "To", "Body").send();
             Assert.AreEqual(newSMS.Properties.price, "0");
+
+        }
+        [Test]
+        public void TranscriptionListTest()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Transcriptions.json",transcriptionResponse);
+            var transcriptionlist= akount.GetTranscriptionList().Search();
+            Assert.AreEqual(transcriptionlist[0].Properties.sid, "RF20000000000000000000000000000001");
 
         }
     }

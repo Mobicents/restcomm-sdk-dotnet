@@ -4,22 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using org.restcomm.connect.sdk.dotnet;
-
-namespace SMSExamples
+namespace TranscriptionExample
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //Login 
             var akount = new Account("Account sid here ", "Authentication_Token", "https://restcomm_ip/restcomm/2012-04-24/");
-            var SMSlist=akount.GetSMSList().Search();
-            foreach(SMS sms in SMSlist)
+            var transcriptionList= akount.GetTranscriptionList().Search();
+            foreach(Transcription tr in transcriptionList)
             {
-                Console.WriteLine(sms.Properties.body);
+                Console.WriteLine(tr.Properties.transcription_text);
             }
-            akount.SendSMS("from", "to", "Test Message").send();
-            Console.ReadLine();
         }
     }
 }

@@ -23,9 +23,9 @@ using System;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
-   /// <summary>
-   /// contains field for each property of account
-   /// </summary>
+    /// <summary>
+    /// contains field for each property of account
+    /// </summary>
     public struct accountProperties
     {
         public string sid { get; set; }
@@ -174,6 +174,21 @@ namespace org.restcomm.connect.sdk.dotnet
         public string price { get; set; }
         public string price_unit { get; set; }
         public string api_version { get; set; }
+        public string uri { get; set; }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public struct transcriptionProperties{
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string account_sid { get; set; }
+        public string status { get; set; }
+        public string recording_sid { get; set; }
+        public string duration { get; set; }
+        public string transcription_text { get; set; }
+        public string price { get; set; }
         public string uri { get; set; }
     }
 

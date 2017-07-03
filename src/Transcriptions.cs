@@ -32,33 +32,32 @@ namespace org.restcomm.connect.sdk.dotnet
     public partial class Account
     {
         /// <summary>
-        /// use this to search available phone number
+        /// A transcription is a text version of a recording produced using automatic speech recognition.
         /// </summary>
-        /// <param name="IsoCountryCode">ISo country code eg. SOM for somalia </param>
-        /// <returns> numberfilter :contains method to apply searh filter and execute search request</returns>
-        public NumberFilter SearchPhoneNumbers(string IsoCountryCode)
+        /// <returns> TranscriptionsFilter :contains method to apply searh filter and execute search request</returns>
+        public TranscriptionsFilter GetTranscriptionList()
         {
 
-            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/AvailablePhoneNumbers/" + IsoCountryCode + "/Local.json");
+            RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Transcriptions.json");
 
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             RestRequest req = new RestRequest(Method.GET);
-            return new NumberFilter(client, req);
+            return new TranscriptionsFilter(client, req);
 
         }
-
+            
 
     }
     /// <summary>
-    /// contains method to apply searh filter and execute search request
+    /// contains method to apply search filter and execute search request
     /// </summary>
-    public class NumberFilter
+    public class TranscriptionsFilter
     {
         private RestClient Client;
         private RestRequest Request;
-       
 
-        public NumberFilter(RestClient client, RestRequest request)
+
+        public TranscriptionsFilter(RestClient client, RestRequest request)
         {
             Client = client;
             Request = request;
@@ -72,28 +71,28 @@ namespace org.restcomm.connect.sdk.dotnet
         {
             Request.AddQueryParameter(ParameterName, ParameterValue);
         }
-       /// <summary>
-       /// executes the request 
-       /// </summary>
-       /// <returns>search result</returns>
-        public List<PhoneNumber> Search()
+        /// <summary>
+        /// executes the request 
+        /// </summary>
+        /// <returns>search result</returns>
+        public List<Transcription> Search()
         {
 
             IRestResponse res = Client.Execute(Request);
             
             var content = res.Content;
- 
+            content ="["+ content.Split('[', ']')[1]+"]";
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
 
-           
-          var  Propertieslist = JsonConvert.DeserializeObject<List<numberProperties>>(content);
           
-            List<PhoneNumber> phonenumberlist = new List<PhoneNumber>();
-                foreach(numberProperties property in Propertieslist)
+            var Propertieslist = JsonConvert.DeserializeObject<List<transcriptionProperties>>(content);
+
+            List<Transcription> TranscriptionList = new List<Transcription>();
+            foreach (transcriptionProperties property in Propertieslist)
             {
-                phonenumberlist.Add(new PhoneNumber(property));
+                TranscriptionList.Add(new Transcription(property));
             }
-            return phonenumberlist;
+            return TranscriptionList;
 
         }
 
@@ -103,16 +102,16 @@ namespace org.restcomm.connect.sdk.dotnet
 
     }
     /// <summary>
-    /// stores phone number info such as sid, friendly name,price
+    /// stores Transcription info such as sid,price
     /// </summary>
-    public class PhoneNumber
+    public class Transcription
     {
 
 
-        public numberProperties Properties;
+        public transcriptionProperties Properties;
 
-  
-        public PhoneNumber(numberProperties properties)
+
+        public Transcription(transcriptionProperties properties)
         {
             Properties = properties;
         }

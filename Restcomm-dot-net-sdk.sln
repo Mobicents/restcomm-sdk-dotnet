@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberExamples", "samples\N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSExamples", "samples\SMSExamples\SMSExamples.csproj", "{73F7F482-8EDC-4C46-B7D4-DC5DFCDACF08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranscriptionExample", "samples\TranscriptionExample\TranscriptionExample.csproj", "{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{73F7F482-8EDC-4C46-B7D4-DC5DFCDACF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73F7F482-8EDC-4C46-B7D4-DC5DFCDACF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F7F482-8EDC-4C46-B7D4-DC5DFCDACF08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

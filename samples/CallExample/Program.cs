@@ -10,7 +10,7 @@ namespace Calls
         {
 
             //Login 
-            Account akount = new Account("Enter your sid here", "Enter your authtoken here", "https://cloud.restcomm.com/restcomm/2012-04-24/");
+            var akount = new Account("Account sid here ", "Authentication_Token", "https://restcomm_ip/restcomm/2012-04-24/");
 
             //Makes call
             var OutBCall = akount.MakeCall("From?", "client:democlients", "http://cloud.restcomm.com/restcomm/demos/hello-play.xml");
