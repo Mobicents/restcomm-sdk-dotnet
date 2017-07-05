@@ -83,8 +83,6 @@ namespace org.restcomm.connect.sdk.dotnet
             IRestResponse response = client.Execute(login);
             var content = response.Content;
 
-
-
             Properties.date_updated = content.GetPropertyJson("date_updated");
 
             Properties.auth_token = content.GetPropertyJson("auth_token");
@@ -174,7 +172,6 @@ namespace org.restcomm.connect.sdk.dotnet
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             login.AddParameter("Status", "closed");                                     
             IRestResponse response = client.Execute(login);
-         
         }
 
     }

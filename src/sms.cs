@@ -165,7 +165,6 @@ namespace org.restcomm.connect.sdk.dotnet
         {
             IRestResponse response = Client.Execute(Request);
             var content = response.Content;
-            Console.WriteLine(content);
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
             SMSProperties properties =JsonConvert.DeserializeObject<SMSProperties>(content);
             SMS newSMS = new SMS(properties);

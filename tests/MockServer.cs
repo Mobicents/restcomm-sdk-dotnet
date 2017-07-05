@@ -20,9 +20,7 @@
 //  */
 //
 using System;
-using System.Threading;
 using System.Collections.Generic;
-using WireMock.Matchers;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;

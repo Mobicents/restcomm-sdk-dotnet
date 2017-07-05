@@ -191,6 +191,29 @@ namespace org.restcomm.connect.sdk.dotnet
         public string price { get; set; }
         public string uri { get; set; }
     }
+    public struct conferenceProperties
+    {
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string account_sid { get; set; }
+        public string status { get; set; }
+        public string api_version { get; set; }
+        public string friendly_name { get; set; }
+        public string uri { get; set; }
+    }
+    public struct participantProperties
+    {
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string account_sid { get; set; }
+        public string muted { get; set; }
+        public string hold { get; set; }
+        public string start_conference_on_enter { get; set; }
+        public string end_conference_on_enter { get; set; }
+        public string uri { get; set; }
+    }
 
 }
 

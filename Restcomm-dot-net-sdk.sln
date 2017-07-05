@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSExamples", "samples\SMSE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranscriptionExample", "samples\TranscriptionExample\TranscriptionExample.csproj", "{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceManagement", "samples\ConferenceManagement\ConferenceManagement.csproj", "{33B313DA-E497-4DB2-8479-2D924D727B9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4CADFEF-7F94-43F3-BBFF-5B7A6BFB33F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B313DA-E497-4DB2-8479-2D924D727B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B313DA-E497-4DB2-8479-2D924D727B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B313DA-E497-4DB2-8479-2D924D727B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B313DA-E497-4DB2-8479-2D924D727B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

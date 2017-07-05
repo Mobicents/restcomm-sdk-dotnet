@@ -58,8 +58,10 @@ namespace Test
         string notificationresponse = "[\n    {\n      \"sid\": \"NOa6b821987c1e47b4b91d2678fdndjdn\",\n      \"date_created\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 11:09:40 +0000\",\n      \"account_sid\": \"AC43b4d94a9b2\",\n      \"api_version\": \"2012-04-24\",\n      \"log\": 0,\n      \"error_code\": 11001,\n      \"more_info\": \"/restcomm/errors/11001.html\",\n      \"message_text\": \"Cannot Connect to Client: bob : Make sure the Client exist or is registered with Restcomm\",\n      \"message_date\": \"2017-05-17T11:09:40.000Z\",\n      \"request_url\": \"\",\n      \"request_method\": \"\",\n      \"request_variables\": \"\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c/Notifications/NOa6b82198.json\"\n    }\n   ]";
         string SMSresponse = "[\n    {\n      \"sid\": \"SMade2570e7f554578a\",\n      \"date_created\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"date_updated\": \"Wed, 28 Jun 2017 06:30:32 +0000\",\n      \"account_sid\": \"AC13b4372c92\",\n      \"from\": \"+1654123987\",\n      \"to\": \"+1321654879\",\n      \"body\": \"This is a test message\",\n      \"status\": \"sending\",\n      \"direction\": \"outbound-api\",\n      \"price\": \"0\",\n      \"price_unit\": \"USD\",\n      \"api_version\": \"2012-04-24\",\n      \"uri\": \"/2012-04-24/Accounts/AC13b4372c92ed5c07d951cf842e2664ff/SMS/Messages/SMade2570e7f554578ac590311085f53e2.json\"\n    }]";
         string transcriptionResponse = " {\"page\":0,\"num_pages\":0,\"page_size\":50,\"total\":13,\"start\":\"0\",\"end\":\"13\",\"uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json\",\"first_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"previous_page_uri\":\"null\",\"next_page_uri\":\"null\",\"last_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"transcriptions\":\n    [\n        {\n            \"sid\": \"RF20000000000000000000000000000001\",\n            \"date_created\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"date_updated\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"account_sid\":\"ACae6e420f425248d6a26948c17a9e2acf\",\n            \"status\":\"completed\",\n            \"recording_sid\":\"CA5FB00000000000000000000000000002\",\n            \"duration\":\"14.70275\",\n            \"transcription_text\":\"Hello, Welcome to RestComm Connect\",\n            \"price\":\"0.0\",\n            \"uri\":\"/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions/NOb88ccff6c9e04f989de9415a555ad84d.json.json\"\n        }\n    ]\n}";
+        string conferenceResponse = "{\n  \"page\": 0,\n  \"num_pages\": 2,\n  \"page_size\": 50,\n  \"total\": 123,\n  \"start\": \"0\",\n  \"end\": \"49\",\n  \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json\",\n  \"first_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=0&PageSize=50\",\n  \"previous_page_uri\": \"null\",\n  \"next_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=1&PageSize=50&AfterSid=CF5f25a49df5844\",\n  \"last_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=2&PageSize=50\",\n  \"conferences\": [\n    {\n      \"sid\": \"CF00a13f9e9\",\n      \"date_created\": \"Thu, 21 Jul 2016 13:02:45 +0000\",\n      \"date_updated\": \"Thu, 21 Jul 2016 13:02:52 +0000\",\n      \"account_sid\": \"AC23f1b11bbb\",\n      \"status\": \"FORCED_COMPLETED\",\n      \"api_version\": \"2012-04-24\",\n      \"friendly_name\": \"amits-conf\",\n      \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences/CF00a13f9e9.json\",\n      \"subresource_uris\": {\n        \"participants\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences/CF00a13f9e9/Participants.json\"\n      }\n    }\n]";
+        string participantsResponse = "{\n [\n {\n \"sid\": \"CA04a5c14f4ccc\",\n \"date_created\": \"Fri, 30 Jun 2017 11:52:10 +0000\",\n \"date_updated\": \"Fri, 30 Jun 2017 11:52:15 +0000\",\n \"account_sid\": \"AC23f1b11bbb\",\n \"muted\": false,\n \"hold\": false,\n \"start_conference_on_enter\": true,\n \"end_conference_on_enter\": false,\n \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Calls/CA04a5c14f4ccc.json\"\n }\n ]\n}";
         [SetUp]
-        public void Login()
+       public void Login()
         {
             //MockServer.AddGetRequest
             
@@ -96,7 +98,7 @@ namespace Test
         }
 
         	[Test]
-            public void  CreateSubAccount()
+        public void  CreateSubAccount()
         {
             var paradictionary = new Dictionary<string, string>();
             paradictionary.Add("FriendlyName", "password");
@@ -116,7 +118,7 @@ namespace Test
             string subaccountlistresponse = "[" + loginresponse + "]";
             MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts.json", subaccountlistresponse);
                 List<SubAccount> subaccountlist= akount.GetSubAccountList ();
-                    Assert.AreEqual (subaccountlist.Count, 1);
+                    Assert.AreEqual (subaccountlist[0].Properties.sid, "test");
                 }
         
         [Test]
@@ -207,7 +209,6 @@ namespace Test
             var parameter = new Dictionary<string, string>();
           
             List<Notification> NotificationList = akount.GetNotificationList(parameter);
-            Console.WriteLine(NotificationList[0].Properties.log);
             Assert.AreEqual(NotificationList[0].Properties.log, "0");
            
         }
@@ -239,6 +240,39 @@ namespace Test
             var transcriptionlist= akount.GetTranscriptionList().Search();
             Assert.AreEqual(transcriptionlist[0].Properties.sid, "RF20000000000000000000000000000001");
 
+        }
+        [Test]
+        public void GetConferenceList()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences.json", conferenceResponse);
+            var conferenceList = akount.GetConferenceList();
+            Assert.AreEqual(conferenceList[0].properties.api_version, "2012-04-24");
+           
+        }
+        [Test]
+        public void GetparticipantList()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences.json", conferenceResponse);
+            var conferencelist = akount.GetConferenceList();
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences/" + conferencelist[0].properties.sid + "/Participants.json",participantsResponse);
+           var participantsList= conferencelist[0].GetParticipantList(akount.Properties.sid,akount.Properties.auth_token);
+            Assert.AreEqual(participantsList[0].properties.muted, "false");
+        }
+        [Test]
+        public void MuteParticipant()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences.json", conferenceResponse);
+            var conferencelist = akount.GetConferenceList();
+            //  Assert.AreEqual(conferenceList[0].properties.api_version, "2012-04-24");
+            var newparticipantResponse = participantsResponse.Split('[', ']')[1];
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences/" + conferencelist [0].properties.sid + "/Participants.json",participantsResponse);
+            var participantsList= conferencelist [0].GetParticipantList(akount.Properties.sid,akount.Properties.auth_token);
+            Assert.AreEqual(participantsList [0].properties.muted, "false");
+            var parameter = new Dictionary<string, string>();
+            parameter.Add("Mute", "false");
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences/" + conferencelist[0].properties.sid + "/Participants/"+participantsList[0].properties.sid+".json",parameter, newparticipantResponse);
+            bool p=participantsList[0].MuteParticipant(akount.Properties.sid, akount.Properties.auth_token, conferencelist[0].properties.sid,"false");
+            Assert.AreEqual(false, p);
         }
     }
 }
