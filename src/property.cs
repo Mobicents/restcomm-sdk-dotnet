@@ -214,6 +214,47 @@ namespace org.restcomm.connect.sdk.dotnet
         public string end_conference_on_enter { get; set; }
         public string uri { get; set; }
     }
+    public struct incomingnumberProperties
+    {
+        public string sid { get; set; }
+        public string account_sid { get; set; }
+        public string friendly_name { get; set; }
+        public string phone_number { get; set; }
+        public string voice_url { get; set; }
+        public string voice_method { get; set; }
+        public string voice_fallback_url { get; set; }
+        public string voice_fallback_method { get; set; }
+        public string status_callback { get; set; }
+        public string status_callback_method { get; set; }
+        public string voice_caller_id_lookup { get; set; }
+        public string voice_application_sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string sms_url { get; set; }
+        public string sms_method { get; set; }
+        public string sms_fallback_method { get; set; }
+        public string sms_application_sid { get; set; }
+        public string sms_fallback_url { get; set; }
+        public string ussd_url { get; set; }
+        public string ussd_method { get; set; }
+        public string ussd_fallback_method { get; set; }
+        public string  ussd_fallback_url{ get; set; }
+        public string ussd_application_sid { get; set; }
+        public string refer_url { get; set; }
+        public string refer_method { get; set; }
+        public string refer_application_sid { get; set; }
+        public string api_version { get; set; }
+        public string uri { get; set; }
+        //public capabilities capabilities { get; set; }
+
+    }
+    public struct capabilities
+    {
+        public string voice_capable { get; set; }
+        public string sms_capable { get; set; }
+        public string mms_capable { get; set; }
+        public string fax_capable { get; set; }
+    }
 
 }
 

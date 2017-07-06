@@ -37,7 +37,6 @@ namespace org.restcomm.connect.sdk.dotnet
         /// <returns> TranscriptionsFilter :contains method to apply searh filter and execute search request</returns>
         public TranscriptionsFilter GetTranscriptionList()
         {
-
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid + "/Transcriptions.json");
 
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);

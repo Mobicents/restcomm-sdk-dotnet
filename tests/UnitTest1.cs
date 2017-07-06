@@ -60,6 +60,7 @@ namespace Test
         string transcriptionResponse = " {\"page\":0,\"num_pages\":0,\"page_size\":50,\"total\":13,\"start\":\"0\",\"end\":\"13\",\"uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json\",\"first_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"previous_page_uri\":\"null\",\"next_page_uri\":\"null\",\"last_page_uri\":\"/restcomm/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions.json?Page=0&PageSize=50\",\"transcriptions\":\n    [\n        {\n            \"sid\": \"RF20000000000000000000000000000001\",\n            \"date_created\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"date_updated\":\"Wed, 30 Oct 2013 16:28:33 +0900\",\n            \"account_sid\":\"ACae6e420f425248d6a26948c17a9e2acf\",\n            \"status\":\"completed\",\n            \"recording_sid\":\"CA5FB00000000000000000000000000002\",\n            \"duration\":\"14.70275\",\n            \"transcription_text\":\"Hello, Welcome to RestComm Connect\",\n            \"price\":\"0.0\",\n            \"uri\":\"/2012-04-24/Accounts/ACae6e420f425248d6a26948c17a9e2acf/Transcriptions/NOb88ccff6c9e04f989de9415a555ad84d.json.json\"\n        }\n    ]\n}";
         string conferenceResponse = "{\n  \"page\": 0,\n  \"num_pages\": 2,\n  \"page_size\": 50,\n  \"total\": 123,\n  \"start\": \"0\",\n  \"end\": \"49\",\n  \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json\",\n  \"first_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=0&PageSize=50\",\n  \"previous_page_uri\": \"null\",\n  \"next_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=1&PageSize=50&AfterSid=CF5f25a49df5844\",\n  \"last_page_uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences.json?Page=2&PageSize=50\",\n  \"conferences\": [\n    {\n      \"sid\": \"CF00a13f9e9\",\n      \"date_created\": \"Thu, 21 Jul 2016 13:02:45 +0000\",\n      \"date_updated\": \"Thu, 21 Jul 2016 13:02:52 +0000\",\n      \"account_sid\": \"AC23f1b11bbb\",\n      \"status\": \"FORCED_COMPLETED\",\n      \"api_version\": \"2012-04-24\",\n      \"friendly_name\": \"amits-conf\",\n      \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences/CF00a13f9e9.json\",\n      \"subresource_uris\": {\n        \"participants\": \"/2012-04-24/Accounts/AC23f1b11bbb/Conferences/CF00a13f9e9/Participants.json\"\n      }\n    }\n]";
         string participantsResponse = "{\n [\n {\n \"sid\": \"CA04a5c14f4ccc\",\n \"date_created\": \"Fri, 30 Jun 2017 11:52:10 +0000\",\n \"date_updated\": \"Fri, 30 Jun 2017 11:52:15 +0000\",\n \"account_sid\": \"AC23f1b11bbb\",\n \"muted\": false,\n \"hold\": false,\n \"start_conference_on_enter\": true,\n \"end_conference_on_enter\": false,\n \"uri\": \"/2012-04-24/Accounts/AC23f1b11bbb/Calls/CA04a5c14f4ccc.json\"\n }\n ]\n}";
+        string incomingphoneResponse = " [  {\n      \"sid\": \"PN4647cd0aca\",\n      \"account_sid\": \"AC13b4372c92\",\n      \"friendly_name\": \"test\",\n      \"phone_number\": \"+420\",\n      \"voice_url\": null,\n      \"voice_method\": \"POST\",\n      \"voice_fallback_url\": null,\n      \"voice_fallback_method\": \"POST\",\n      \"status_callback\": null,\n      \"status_callback_method\": \"POST\",\n      \"voice_caller_id_lookup\": false,\n      \"voice_application_sid\": null,\n      \"date_created\": \"Wed, 17 May 2017 10:54:59 +0000\",\n      \"date_updated\": \"Wed, 17 May 2017 10:54:59 +0000\",\n      \"sms_url\": null,\n      \"sms_method\": \"POST\",\n      \"sms_fallback_url\": null,\n      \"sms_fallback_method\": \"POST\",\n      \"sms_application_sid\": null,\n      \"ussd_url\": null,\n      \"ussd_method\": \"POST\",\n      \"ussd_fallback_url\": null,\n      \"ussd_fallback_method\": \"POST\",\n      \"ussd_application_sid\": null,\n      \"refer_url\": null,\n      \"refer_method\": \"POST\",\n      \"refer_application_sid\": null,\n      \"capabilities\": {\n        \"voice_capable\": false,\n        \"sms_capable\": false,\n        \"mms_capable\": false,\n        \"fax_capable\": false\n      }\n}\n]";
         [SetUp]
        public void Login()
         {
@@ -273,6 +274,24 @@ namespace Test
             MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/Conferences/" + conferencelist[0].properties.sid + "/Participants/"+participantsList[0].properties.sid+".json",parameter, newparticipantResponse);
             bool p=participantsList[0].MuteParticipant(akount.Properties.sid, akount.Properties.auth_token, conferencelist[0].properties.sid,"false");
             Assert.AreEqual(false, p);
+        }
+        [Test]
+        public void IncomingPhoneList()
+        {
+            MockServer.AddGetRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/IncomingPhoneNumbers.json",incomingphoneResponse);
+            var incomingphoneList = akount.GetIncomingPhoneNumberList();
+            Assert.AreEqual(incomingphoneList[0].properties.friendly_name, "test");
+        }
+        [Test]
+        public void AddNewPhoneNumber()
+        {
+            var parameter = new Dictionary<string, string>();
+            parameter.Add("PhoneNumber", "phonenumber");
+            var newresponse = incomingphoneResponse.Split('[', ']')[1];
+            MockServer.AddPostRequest("/restcomm/2012-04-24/Accounts/" + akount.Properties.sid + "/IncomingPhoneNumbers.json", parameter,newresponse);
+            IncomingPhoneNumber newphonenumber= akount.AddNewPhoneNumber(phoneNumber:"phonenumber");
+            Assert.AreEqual(newphonenumber.properties.friendly_name, "test");
+
         }
     }
 }
