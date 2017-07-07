@@ -10,6 +10,9 @@ using System.Text.RegularExpressions;
 
 namespace org.restcomm.connect.sdk.dotnet
 {
+    /// <summary>
+    /// type of Phone Number .
+    /// </summary>
     public enum type {all,Local,TollFree,Mobile }
    public partial class Account
     {

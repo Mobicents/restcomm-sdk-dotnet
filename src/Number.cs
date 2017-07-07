@@ -66,11 +66,11 @@ namespace org.restcomm.connect.sdk.dotnet
         /// <summary>
         /// Adds search filter to your request
         /// </summary>
-        /// <param name="ParameterName">name of the search filter eg. "AreaCode"</param>
-        /// <param name="ParameterValue">value of parameter .</param>
-        public void AddSearchParameter(string ParameterName, string ParameterValue)
+        /// <param name="AvailablePhoneFilter">name of the search filter eg. "AreaCode"</param>
+        /// <param name="Value">value of parameter .</param>
+        public void AddSearchParameter(string AvailablePhoneFilter, string Value)
         {
-            Request.AddQueryParameter(ParameterName, ParameterValue);
+            Request.AddQueryParameter(AvailablePhoneFilter, Value);
         }
        /// <summary>
        /// executes the request 

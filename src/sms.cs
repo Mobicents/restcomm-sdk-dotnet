@@ -93,17 +93,18 @@ namespace org.restcomm.connect.sdk.dotnet
         /// <summary>
         /// add filter to your search
         /// </summary>
-        /// <param name="ParameterName">name of the parameter eg. "Status"</param>
-        /// <param name="ParameterValue">parameter value eg. "sending" for parameter "Status" </param>
-        public void AddSearchFilter(string ParameterName, string ParameterValue)
+        /// <param name="SMSFIlter">name of the parameter eg. "Status"</param>
+        /// <param name="Value">parameter value eg. "sending" for parameter "Status" </param>
+        public void AddSearchFilter(string SMSFilter, string Value)
         {
-            parametername.Add(ParameterName);
-            parametervalue.Add(ParameterValue);
+            parametername.Add(SMSFilter);
+            parametervalue.Add(Value);
         }
         /// <summary>
         /// Execute the searh request
         /// </summary>
         /// <returns>list of calls </returns>
+        /// 
         public List<SMS> Search()
         {
             string clienturl = Account.baseurl + "Accounts/" + Sid + "/SMS/Messages.json";
@@ -130,6 +131,7 @@ namespace org.restcomm.connect.sdk.dotnet
             return SMSlist;
             
         }
+        
 
     }
 
@@ -182,10 +184,12 @@ namespace org.restcomm.connect.sdk.dotnet
         {
             Properties = properties;
         }
+        
        
        
 
     }
+
 
    
 

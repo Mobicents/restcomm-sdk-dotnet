@@ -93,12 +93,12 @@ namespace org.restcomm.connect.sdk.dotnet
         /// <summary>
         /// add parameter like AreaCode,COntains
         /// </summary>
-        /// <param name="ParameterName">name of the parameter eg. "Status"</param>
-        /// <param name="ParameterValue">parameter value eg. "ringing" for parameter "Status" </param>
-        public void AddSearchFilter(string ParameterName, string ParameterValue)
+        /// <param name="CallFilter">name of the parameter eg. "Status"</param>
+        /// <param name="Value">parameter value eg. "ringing" for parameter "Status" </param>
+        public void AddSearchFilter(string CallFilter, string Value)
         {
-            parametername.Add(ParameterName);
-            parametervalue.Add(ParameterValue);
+            parametername.Add(CallFilter);
+            parametervalue.Add(Value);
         }
         /// <summary>
         /// Execute the searh request

@@ -15,14 +15,14 @@ namespace org.restcomm.connect.sdk.dotnet
         /// <summary>
         /// returns list of all notification
         /// </summary>
-        /// <param name="parameters">use this dictionary to add multiple searh filters</param>
+        /// <param name="NotificationFilter">use this dictionary to add multiple searh filters</param>
         /// <returns>list of all notification</returns>
-     public List<Notification>   GetNotificationList(Dictionary<string ,string> parameters=null)
+     public List<Notification>   GetNotificationList(Dictionary<string ,string> NotificationFilter=null)
         {
             RestClient client = new RestClient(baseurl + "Accounts/" + Properties.sid +"/Notifications.json");
             client.Authenticator = new HttpBasicAuthenticator(Properties.sid, Properties.auth_token);
             RestRequest request = new RestRequest(Method.GET);
-            foreach(var pair in parameters)
+            foreach(var pair in NotificationFilter)
             {
                 request.AddQueryParameter(pair.Key, pair.Value);
       
