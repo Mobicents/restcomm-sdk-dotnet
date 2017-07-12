@@ -43,7 +43,7 @@ namespace org.restcomm.connect.sdk.dotnet
             var content = response.Content;
            
             content = "[" + content.Split('[', ']')[1] + "]";
-            
+
             var Propertieslist = JsonConvert.DeserializeObject<List<incomingnumberProperties>>(content);
             var IncomingPhonenumberList = new List<IncomingPhoneNumber>();
             
