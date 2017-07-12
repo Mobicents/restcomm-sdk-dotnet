@@ -20,7 +20,7 @@
 //  */
 //
 using System;
-
+using System.Collections.Generic;
 namespace org.restcomm.connect.sdk.dotnet
 {
     /// <summary>
@@ -120,16 +120,16 @@ namespace org.restcomm.connect.sdk.dotnet
     /// </summary>
     public struct gatewayproperties
     {
-        public string Sid { get; set; }
-        public string DateCreated { get; set; }
-        public string DateUpdated { get; set; }
-        public string FriendlyName { get; set; }
-        public string Password { get; set; }
-        public string Proxy { get; set; }
-        public string Register { get; set; }
-        public string UserName { get; set; }
-        public string TimeToLive { get; set; }
-        public string Uri { get; set; }
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string friendly_name { get; set; }
+        public string password { get; set; }
+        public string proxy { get; set; }
+        public string register { get; set; }
+        public string username { get; set; }
+        public string time_to_live { get; set; }
+        public string uri { get; set; }
 
 
     }
@@ -245,16 +245,73 @@ namespace org.restcomm.connect.sdk.dotnet
         public string refer_application_sid { get; set; }
         public string api_version { get; set; }
         public string uri { get; set; }
-        //public capabilities capabilities { get; set; }
+        //public List<capability>  capabilities { get; set; }
 
     }
-    public struct capabilities
+    public struct capability
     {
         public string voice_capable { get; set; }
         public string sms_capable { get; set; }
         public string mms_capable { get; set; }
         public string fax_capable { get; set; }
     }
+	/// <summary>
+	/// contains all properties for recording api
+	/// </summary>
+	public struct recordingProperties
+	{
+		/// <summary>
+/// A string that uniquely identifies this recording.
+		/// </summary>
+		/// <value>The sid.</value>
+		public string sid { get; set; }
+		/// <summary>
+/// The date that this recording was created.
+		/// </summary>
+		/// <value>The date created.</value>
+		public string date_created { get; set; }
+		/// <summary>
+/// The date that this recording was last updated.
+		/// </summary>
+		/// <value>The date updated.</value>
+		public string date_updated { get; set; }
+		/// <summary>
+/// The unique id of the Account that created this recording.
+		/// </summary>
+		/// <value>The account sid.</value>
+		public string account_sid { get; set; }
+		/// <summary>
+/// The unique id of the call during which the recording was made.
+		/// </summary>
+		/// <value>The call sid.</value>
+		public string call_sid { get; set; }
+		/// <summary>
+/// The length of the recording, in seconds.
+		/// </summary>
+		/// <value>The duration.</value>
+		public string duration { get; set; }
+		/// <summary>
+/// The API version in use during the recording.
+		/// </summary>
+		/// <value>The API version.</value>
+		public string api_version { get; set; }
+/// <summary>
+/// The URI for this account, relative to https://localhost:restcomm.
+/// </summary>
+/// <value>The URI.</value>
+		public string uri { get; set; }
+		/// <summary>
+/// The File URI for this recording, relative to https://localhost:restcomm. It can be used to access the WAV file
+		/// </summary>
+		/// <value>The file URI.</value>
+		public string file_uri { get; set; }
+		/// <summary>
+		/// The S3 URI for this recording - Exists ONLY IF Amazon S3 integration is enabled and security level is NONE-
+		/// </summary>
+		/// <value>The s3 URI.</value>
+		public string s3_uri { get; set; }
+	}
+   
 
 }
 
