@@ -1,7 +1,7 @@
 ﻿// /*
 //  * TeleStax, Open Source Cloud Communications
 //  * Copyright 2011-2016, Telestax Inc and individual contributors
-//  * by the @authors tag.
+//  * by the @Paras Kumar(parasbarnwal06@gmail.com).
 //  *
 //  * This is free software; you can redistribute it and/or modify it
 //  * under the terms of the GNU Lesser General Public License as
@@ -70,7 +70,9 @@ namespace org.restcomm.connect.sdk.dotnet
         public String date_created { get; set; }
         public String api_version { get; set; }
         public String kind { get; set; }
-        public String auth_token { get; set; }
+        public String voice_caller_id_lookup { get; set; }
+        public string rcml_url { get; set; }
+        public string uri { get; set; }
 
     }
    
@@ -118,6 +120,26 @@ public struct clientProperties
         public string Uri { get; set; }
 
 
+    }
+    public struct NotificationProperties
+    {
+        public string sid { get; set; }
+        public string date_created { get; set; }
+        public string date_updated { get; set; }
+        public string account_sid { get; set; }
+        public string call_sid { get; set; }
+        public string api_version { get; set; }
+        public string log { get; set; }
+        public string error_code { get; set; }
+        public string more_info { get; set; }
+        public string message_text { get; set; }
+        public string message_date { get; set; }
+        public string request_url { get; set; }
+        public string request_method { get; set; }
+        public string request_variables { get; set; }
+        public string response_body { get; set; }
+        public string response_headers { get; set; }
+        public string uri { get; set; }
     }
 
 }

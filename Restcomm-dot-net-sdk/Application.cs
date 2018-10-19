@@ -1,7 +1,7 @@
 ﻿// /*
 //  * TeleStax, Open Source Cloud Communications
 //  * Copyright 2011-2016, Telestax Inc and individual contributors
-//  * by the @authors tag.
+//  * by the @Paras Kumar(parasbarnwal06@gmail.com).
 //  *
 //  * This is free software; you can redistribute it and/or modify it
 //  * under the terms of the GNU Lesser General Public License as
@@ -91,10 +91,11 @@ namespace org.restcomm.connect.sdk.dotnet
 
     public class Application
     {
+        string auth_token;
         public applicationProperties Properties;
         public Application(String accountsid, String tokenno, string ApplicationSid)
         {
-
+            auth_token = tokenno;
             RestClient client = new RestClient(Account.baseurl + "Accounts/" + accountsid + "/Applications/" + ApplicationSid+".json");
             RestRequest login = new RestRequest(Method.GET);
 
@@ -107,14 +108,29 @@ namespace org.restcomm.connect.sdk.dotnet
             content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
             Properties = JsonConvert.DeserializeObject<applicationProperties>(content);
         }
+        public void Update(Dictionary<string,string> parameters)
+        {
+            RestClient client = new RestClient(Account.baseurl + "Accounts/" + Properties.account_sid + "/Applications/" + Properties.sid +Properties.sid+ ".json");
+            RestRequest login = new RestRequest(Method.POST);
+
+            foreach (var pair in parameters)
+            {
+                login.AddParameter(pair.Value,pair.Value);
+            }
+            IRestResponse response = client.Execute(login);
+            var content = response.Content;
+            content = Regex.Replace(content, @"[^\u0000-\u007F]+", string.Empty);
+            Properties = JsonConvert.DeserializeObject<applicationProperties>(content);
+
+        }
         public void Delete()
         {
 
             RestClient client = new RestClient(Account.baseurl + "Accounts/" + Properties.account_sid + "/Applications/" + Properties.sid+".json");
             RestRequest login = new RestRequest(Method.DELETE);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.account_sid, Properties.auth_token);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.account_sid, auth_token);
             client.Execute(login);
-
+          
 
         }
         //Update Application to be done

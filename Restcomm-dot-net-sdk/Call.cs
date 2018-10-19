@@ -1,7 +1,7 @@
 ﻿// /*
 //  * TeleStax, Open Source Cloud Communications
 //  * Copyright 2011-2016, Telestax Inc and individual contributors
-//  * by the @authors tag.
+//  * by the @Paras Kumar(parasbarnwal06@gmail.com)
 //  *
 //  * This is free software; you can redistribute it and/or modify it
 //  * under the terms of the GNU Lesser General Public License as
@@ -153,11 +153,12 @@ namespace org.restcomm.connect.sdk.dotnet
                 Properties = properties;
             }
        
-            public void ModifyCall(Dictionary<string,string> parameter, String AccountSId, String AuthToken)
+            public void ModifyCall(Dictionary<string,string> parameter, String AccountSid, String AuthToken)
             {
-                RestClient client = new RestClient(Account.baseurl + "Accounts/" + AccountSId + "/Calls.json/" + Properties.sid);
-                RestRequest makecallmodification = new RestRequest(Method.POST);
-                client.Authenticator = new HttpBasicAuthenticator(AccountSId,AuthToken);
+           
+            RestClient client = new RestClient(Account.baseurl + "Accounts/" + AccountSid + "/Calls.json/" + Properties.sid);
+            RestRequest makecallmodification = new RestRequest(Method.POST);
+                client.Authenticator = new HttpBasicAuthenticator(AccountSid,AuthToken);
             foreach (var pair in parameter)
             {
                 makecallmodification.AddParameter(pair.Key, pair.Value);
