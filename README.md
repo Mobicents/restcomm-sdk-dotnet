@@ -13,13 +13,22 @@ This sdk makes it easy for the developer to integerate restcomm connect services
 
 ## Installation
 
-Import this library in to your project by using **Nuget package manager** or you can create nuget/dll yourself by compiling this project in Visual Studio , Xamarin Studio or monodevelop.
+Import this library in to your project by using **Nuget package manager**.
+To install Restcomm-dot-net-sdk, run the following command in the Package Manager Console 
 
-Once you are done importing , use **org.restcomm.connect.sdk.dotnet** namespace .
+```
+Install-Package Restcomm-dot-net-sdk 
+```
+ or you can create nuget/dll yourself by compiling this project in Visual Studio , Xamarin Studio or monodevelop.
+
+ use **org.restcomm.connect.sdk.dotnet** namespace to access elements from this sdk.
 
 ## Dependencies 
 
-None
+
+        Newtonsoft.Json (>= 10.0.2)
+        RestSharp (>= 105.2.3)
+
 
 ### Sample Usage
 
